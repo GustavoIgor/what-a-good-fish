@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://nufmnc742fk0"]
+
+[ext_resource type="Script" uid="uid://c6baxu5gj0fhs" path="res://Scripts/lake.gd" id="1_cwlqb"]
+
+[node name="Lake" type="StaticBody2D"]
+script = ExtResource("1_cwlqb")
