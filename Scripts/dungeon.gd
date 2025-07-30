@@ -57,42 +57,40 @@ func place_random_objects(scene: PackedScene, count: int, is_lake: bool = false)
 	for i in range(count):
 		var attempts = 0
 		var valid_position = false
+		var tile_position
 		
 		# Try to find a valid position (not on wall or other objects)
 		while not valid_position and attempts < 100:
-			position = Vector2(randi_range(1, 18), randi_range(1, 18))
-			var tile_pos = tilemap.local_to_map(position)
-			var tile_data = tilemap.get_cell_tile_data(tile_pos)
-			
-			if tile_data:
-				# For lakes, we can place them anywhere except walls
-				if is_lake and tilemap.get_cell_atlas_coords(tile_pos) != wall_tile_id:
-					valid_position = true
-				# For other objects, only place on floor tiles
-				elif tilemap.get_cell_atlas_coords(tile_pos) == floor_tile_id:
-					valid_position = true
+			tile_position = Vector2(randi_range(1, 18), randi_range(1, 18))
+			# For lakes, we can place them anywhere except walls
+			if is_lake and tilemap.get_cell_atlas_coords(tile_position) != wall_tile_id:
+				valid_position = true
+			# For other objects, only place on floor tiles
+			elif tilemap.get_cell_atlas_coords(tile_position) == floor_tile_id:
+				valid_position = true
 			
 			# Additional check to avoid overlapping with existing objects
 			if valid_position:
 				for child in get_children():
-					if child != player and child is Node2D:
-						if child.position.distance_to(position) < 16:  # Rough proximity check
+					if child != player and child is StaticBody2D:
+						if child.position.distance_to(tile_position) < 16:  # Rough proximity check
 							valid_position = false
 							break
 			
 			attempts += 1
 		
 		if valid_position:
+			print("placed")
 			var instance = scene.instantiate()
+			instance.position = tilemap.map_to_local(tile_position)
 			add_child(instance)
-			instance.position = tilemap.map_to_local(tilemap.local_to_map(position))
 
 func place_player():
 	var attempts = 0
 	var placed = false
 	
 	while not placed and attempts < 100:
-		position = Vector2(randi_range(1, 18), randi_range(1, 18))
+		var spawn_position = Vector2(randi_range(1, 18), randi_range(1, 18))
 		var tile_pos = tilemap.local_to_map(position)
 		
 		# Check if tile is floor (not wall or lake)
@@ -101,12 +99,12 @@ func place_player():
 			var overlapping = false
 			for child in get_children():
 				if child != player and child is Node2D:
-					if child.position.distance_to(position) < 16:  # Rough proximity check
+					if child.position.distance_to(spawn_position) < 16:  # Rough proximity check
 						overlapping = true
 						break
 			
 			if not overlapping:
-				player.position = position
+				player.position = spawn_position
 				placed = true
 		
 		attempts += 1

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://j72d13ljki50"]
+[gd_scene load_steps=10 format=3 uid="uid://j72d13ljki50"]
 
 [ext_resource type="Script" uid="uid://vpaurlwoilbh" path="res://Scripts/dungeon.gd" id="1_oavya"]
 [ext_resource type="PackedScene" uid="uid://dou71pvxktk12" path="res://Scenes/player.tscn" id="2_dakn4"]
+[ext_resource type="PackedScene" uid="uid://nufmnc742fk0" path="res://lake.tscn" id="2_dcl0p"]
 [ext_resource type="PackedScene" uid="uid://bmd7bht70s73m" path="res://Scenes/monster.tscn" id="2_iqbxe"]
 [ext_resource type="PackedScene" uid="uid://cq3ubx5wxurg8" path="res://Scenes/chest.tscn" id="3_5v1xs"]
 [ext_resource type="PackedScene" uid="uid://b3jd7ffk5hijk" path="res://Scenes/stairs.tscn" id="4_dcl0p"]
@@ -22,6 +23,7 @@ sources/0 = SubResource("TileSetAtlasSource_dcl0p")
 
 [node name="Dungeon" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_oavya")
+lake_scene = ExtResource("2_dcl0p")
 chest_scene = ExtResource("3_5v1xs")
 monster_scene = ExtResource("2_iqbxe")
 stairs_scene = ExtResource("4_dcl0p")
@@ -34,5 +36,6 @@ tile_map_data = PackedByteArray(0, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_203el")
 
 [node name="Player" parent="." instance=ExtResource("2_dakn4")]
+position = Vector2(51, 36)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
