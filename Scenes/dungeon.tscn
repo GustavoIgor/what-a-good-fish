@@ -23,23 +23,18 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_dcl0p")
 
-[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="Dungeon" type="Node2D"]
 script = ExtResource("1_oavya")
 lake_scene = ExtResource("2_dcl0p")
 chest_scene = ExtResource("3_5v1xs")
 monster_scene = ExtResource("2_iqbxe")
 stairs_scene = ExtResource("4_dcl0p")
-player = NodePath("Player")
+player_packed = ExtResource("2_dakn4")
 
 [node name="TileWrapper" type="Node2D" parent="."]
 
 [node name="Ground" type="TileMapLayer" parent="TileWrapper"]
 tile_map_data = PackedByteArray(0, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_203el")
-
-[node name="Player" parent="." instance=ExtResource("2_dakn4")]
-position = Vector2(51, 36)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="UI" parent="." instance=ExtResource("8_203el")]

@@ -4,3 +4,9 @@
 
 [node name="SoundManager" type="Node"]
 script = ExtResource("1_32i44")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX2" type="AudioStreamPlayer" parent="."]

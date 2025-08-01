@@ -9,6 +9,7 @@ func _ready() -> void:
 	animation.animation_finished.connect(_on_animation_finished)
 
 func open():
+	SoundManager.play_sfx(load("res://Assets/SFX/cabinet-open-44955.mp3"))
 	animation.play("Open")
 
 func _on_animation_finished(anim_name: String) -> void:

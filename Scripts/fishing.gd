@@ -33,12 +33,12 @@ func _input(event):
 
 func check_result():
 	var pointer_x = pointer.position.x
+	Global.unpause_game()
 	Global.change_stamina(-33)
 	if pointer_x >= success_zone.position.x and pointer_x <= success_zone.position.x + success_zone.size.x:
 		Global.fish_caught.emit(true)
 	else:
 		Global.fish_caught.emit(false)
-	Global.unpause_game()
 	queue_free()
 
 func randomize_fishing_zone():

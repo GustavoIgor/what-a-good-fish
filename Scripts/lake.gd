@@ -8,6 +8,7 @@ func _input(event):
 		if Global.stamina < 33:
 			label.text = "You have no stamina to fish now"
 		else:
+			SoundManager.play_sfx(load("res://Assets/SFX/water-splash-02-352021.mp3"), -20)
 			var fishing = preload("res://Scenes/fishing.tscn").instantiate()
 			get_tree().current_scene.add_child(fishing)
 			Global.fishing = true

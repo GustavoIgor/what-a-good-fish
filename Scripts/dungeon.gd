@@ -4,7 +4,7 @@ extends Node2D
 @export var chest_scene: PackedScene
 @export var monster_scene: PackedScene
 @export var stairs_scene: PackedScene
-@export var player: Node2D
+@export var player_packed: PackedScene
 
 @export var wall_tile_id : Vector2i = Vector2i(0, 0)
 @export var floor_tile_id : Vector2i = Vector2i(0, 1)
@@ -15,6 +15,7 @@ func _ready():
 	generate_room()
 	place_objects()
 	place_player()
+	SoundManager.play_music(load("res://Assets/music/WHAT A GOOD FISH.wav"))
 
 func generate_room():
 	# Set all tiles to floor first
@@ -72,7 +73,7 @@ func place_random_objects(scene: PackedScene, count: int, is_lake: bool = false)
 			# Additional check to avoid overlapping with existing objects
 			if valid_position:
 				for child in get_children():
-					if child != player and child is StaticBody2D:
+					if child is StaticBody2D:
 						if child.position.distance_to(tile_position) < 16:  # Rough proximity check
 							valid_position = false
 							break
@@ -86,6 +87,8 @@ func place_random_objects(scene: PackedScene, count: int, is_lake: bool = false)
 			add_child(instance)
 
 func place_player():
+	var player = player_packed.instantiate()
+	add_child(player)
 	var attempts = 0
 	var placed = false
 	
