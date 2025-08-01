@@ -6,10 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl8cb"]
 size = Vector2(28, 14)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_idtik"]
-radius = 41.0122
+[sub_resource type="CircleShape2D" id="CircleShape2D_qbift"]
+radius = 32.1403
 
-[node name="Stairs" type="Area2D"]
+[node name="Stairs" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 11
 script = ExtResource("1_aiuvb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -19,8 +21,19 @@ shape = SubResource("RectangleShape2D_tl8cb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qbift")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="InteractionArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 7)
-shape = SubResource("CircleShape2D_idtik")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
+shape = SubResource("CircleShape2D_qbift")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -50.0
+offset_top = -23.0
+offset_right = 50.0
+text = "PRESS SPACE"
+
+[connection signal="body_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_body_entered"]
+[connection signal="body_exited" from="InteractionArea2D" to="." method="_on_interaction_area_2d_body_exited"]

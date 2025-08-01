@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://fsqr68y78hv6"]
+
+[ext_resource type="Script" uid="uid://c5a0dc7he1l4v" path="res://Scripts/fishing.gd" id="1_i7yw2"]
+[ext_resource type="Texture2D" uid="uid://b5at2l1gvcscl" path="res://Assets/Arts/pointer.png" id="2_f7mym"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7yw2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7mym"]
+bg_color = Color(0, 0.458824, 0, 1)
+
+[node name="Fishing" type="CanvasLayer"]
+script = ExtResource("1_i7yw2")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(660, 340)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GrayBar" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -15.0
+offset_right = 250.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i7yw2")
+
+[node name="GreenBar" type="Panel" parent="Panel/GrayBar"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -15.0
+offset_right = 32.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7mym")
+
+[node name="Pointer" type="Sprite2D" parent="Panel/GrayBar"]
+position = Vector2(250, -6)
+texture = ExtResource("2_f7mym")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.5
+offset_top = 50.0
+offset_right = 270.5
+offset_bottom = 73.0
+grow_horizontal = 2
+text = "GET A FISH! PRESS SPACE WHEN THE POINTER LAND IN THE GREEN AREA"
+
+[node name="PointerTimer" type="Timer" parent="."]

@@ -115,7 +115,7 @@ func place_player():
 			for y in range(20):
 				if tilemap.get_cell_atlas_coords(Vector2i(x, y)) == floor_tile_id:
 					var pos = tilemap.map_to_local(Vector2i(x, y))
-					# Double check for overlapping objects
+				# Double check for overlapping objects
 					var clear = true
 					for child in get_children():
 						if child != player and child is Node2D:

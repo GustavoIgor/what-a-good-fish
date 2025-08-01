@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://nufmnc742fk0"]
+
+[ext_resource type="Script" uid="uid://c6baxu5gj0fhs" path="res://Scripts/lake.gd" id="1_cwlqb"]
+[ext_resource type="Texture2D" uid="uid://bld2mskq55s15" path="res://Assets/Arts/lake.png" id="2_nwgpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b76aj"]
+size = Vector2(58, 38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcbuj"]
+radius = 54.0
+
+[node name="Lake" type="StaticBody2D"]
+script = ExtResource("1_cwlqb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nwgpg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b76aj")
+
+[node name="InteractionArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
+shape = SubResource("CircleShape2D_gcbuj")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -50.0
+offset_top = -42.0
+offset_right = 50.0
+offset_bottom = -19.0
+text = "PRESS 'E'"
+
+[connection signal="body_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_body_entered"]
+[connection signal="body_exited" from="InteractionArea2D" to="." method="_on_interaction_area_2d_body_exited"]

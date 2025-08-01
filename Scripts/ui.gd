@@ -1,0 +1,34 @@
+extends CanvasLayer
+
+@onready var money_label := $Panel/HBoxContainer/MoneyBoxContainer/MoneyLabel
+@onready var stamina_progress_bar := $Panel/HBoxContainer/StaminaBoxContainer/ProgressBar
+@onready var stamina_label := $Panel/HBoxContainer/StaminaBoxContainer/ProgressBar/Label
+@onready var level_label := $Panel/HBoxContainer/LevelBoxContainer/LevelLabel
+@onready var fish_label := $Panel/HBoxContainer/FishBoxContainer/FishLabel
+func _ready() -> void:
+	Global.game_paused.connect(_on_game_paused)
+	Global.game_unpaused.connect(_on_game_unpaused)
+	Global.money_changed.connect(_on_money_changed)
+	Global.stamina_changed.connect(_on_stamina_changed)
+	Global.fish_changed.connect(_on_fish_changed)
+	level_label.text = "LEVEL: " + str(Global.level)
+	_on_money_changed()
+	_on_stamina_changed()
+	_on_fish_changed()
+
+func _on_money_changed():
+	money_label.text = "MONEY: " + str(Global.money)
+	
+func _on_stamina_changed():
+	stamina_progress_bar.value = Global.stamina
+
+func _on_fish_changed():
+	fish_label.text = "FISH: " + str(Global.fish)
+
+func _on_retry_pressed() -> void:
+	Global.descent(0)
+
+func _on_game_paused():
+	hide()
+func _on_game_unpaused():
+	show()

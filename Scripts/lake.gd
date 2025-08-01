@@ -1,1 +1,21 @@
 extends StaticBody2D
+
+@onready var label := $Label
+var inside := false
+
+func _input(event):
+	if event.is_action_pressed("fishing") and inside:
+		if Global.stamina < 33:
+			label.text = "You have no stamina to fish now"
+		else:
+			var fishing = preload("res://Scenes/fishing.tscn").instantiate()
+			get_tree().current_scene.add_child(fishing)
+			Global.fishing = true
+
+func _on_interaction_area_2d_body_entered(body: Node2D) -> void:
+	inside = true
+	label.show()
+
+func _on_interaction_area_2d_body_exited(body: Node2D) -> void:
+	inside = false
+	label.hide()
