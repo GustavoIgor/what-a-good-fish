@@ -1,4 +1,7 @@
 extends CharacterBody2D
+
+@onready var animation := $AnimationPlayer
+@onready var sprite := $Sprite2D
 var speed := 100
 var game_paused := false
 
@@ -13,6 +16,14 @@ func _process(_delta: float) -> void:
 	
 	velocity = direction * speed
 	move_and_slide()
+	animate()
+
+
+func animate():
+	if velocity != Vector2(0, 0):
+		animation.play("walk")
+	else:
+		animation.stop()
 
 func _on_game_paused():
 	game_paused = true

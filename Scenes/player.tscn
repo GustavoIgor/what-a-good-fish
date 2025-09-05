@@ -1,10 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://dou71pvxktk12"]
+[gd_scene load_steps=7 format=3 uid="uid://dou71pvxktk12"]
 
 [ext_resource type="Script" uid="uid://dop6jvidgvddb" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://nrpt26883o8f" path="res://Assets/Arts/player.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://bbyy3nkox2js1" path="res://Assets/Arts/player.png" id="1_v0iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
 size = Vector2(20, 8)
+
+[sub_resource type="Animation" id="Animation_6t5aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+resource_name = "walk"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vgqql"]
+_data = {
+&"RESET": SubResource("Animation_6t5aa"),
+&"walk": SubResource("Animation_cvnsp")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -16,7 +53,13 @@ position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_v0iea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.174533
 texture = ExtResource("1_v0iea")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vgqql")
+}
