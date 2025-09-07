@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://j72d13ljki50"]
+[gd_scene load_steps=12 format=3 uid="uid://j72d13ljki50"]
 
 [ext_resource type="Script" uid="uid://vpaurlwoilbh" path="res://Scripts/dungeon.gd" id="1_oavya"]
 [ext_resource type="PackedScene" uid="uid://dou71pvxktk12" path="res://Scenes/player.tscn" id="2_dakn4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b3jd7ffk5hijk" path="res://Scenes/stairs.tscn" id="4_dcl0p"]
 [ext_resource type="Texture2D" uid="uid://d5c1uqs7uvtw" path="res://Assets/Arts/ground_tiles.png" id="5_5v1xs"]
 [ext_resource type="PackedScene" uid="uid://c40ltgcaeira6" path="res://Scenes/ui.tscn" id="8_203el"]
+[ext_resource type="PackedScene" uid="uid://buhpv4hjsd8iw" path="res://Scenes/inventory.tscn" id="9_t83ds"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dcl0p"]
 texture = ExtResource("5_5v1xs")
@@ -38,3 +39,5 @@ tile_map_data = PackedByteArray(0, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_203el")
 
 [node name="UI" parent="." instance=ExtResource("8_203el")]
+
+[node name="Inventory" parent="." instance=ExtResource("9_t83ds")]

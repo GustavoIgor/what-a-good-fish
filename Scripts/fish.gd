@@ -10,3 +10,4 @@ func _ready() -> void:
 	this_name = names.pick_random()
 	rarity = randi_range(0, 5)
 	weight = randf_range(0.0, 10.0)
+	self.modulate = Color(randf_range(0, 1), 1, 1, 1)

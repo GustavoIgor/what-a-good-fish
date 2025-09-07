@@ -9,12 +9,10 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0n8tc"]
 texture = ExtResource("2_yxepq")
 
-[node name="Inventory" type="Node2D"]
+[node name="Inventory" type="CanvasLayer"]
 script = ExtResource("1_0n8tc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="InventoryIcon" type="TextureRect" parent="CanvasLayer"]
+[node name="InventoryIcon" type="TextureRect" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -26,7 +24,7 @@ grow_horizontal = 0
 mouse_default_cursor_shape = 2
 texture = ExtResource("2_k1vlg")
 
-[node name="InventoryPanel" type="TextureRect" parent="CanvasLayer"]
+[node name="InventoryPanel" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_k5gp2")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel"]
+[node name="GridContainer" type="GridContainer" parent="InventoryPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,149 +55,149 @@ theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 10
 columns = 6
 
-[node name="Slot1" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot1" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot2" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot2" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot3" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot3" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot4" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot4" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot5" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot5" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot6" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot6" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot7" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot7" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot8" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot8" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot9" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot9" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot10" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot10" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot11" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot11" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot12" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot12" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot13" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot13" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot14" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot14" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot15" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot15" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot16" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot16" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot17" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot17" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot18" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot18" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot19" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot19" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot20" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot20" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot21" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot21" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot22" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot22" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot23" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot23" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[node name="Slot24" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer"]
+[node name="Slot24" type="Panel" parent="InventoryPanel/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("5_c5ffv")
 
-[connection signal="mouse_entered" from="CanvasLayer/InventoryIcon" to="." method="_on_inventory_icon_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/InventoryIcon" to="." method="_on_inventory_icon_mouse_exited"]
+[connection signal="mouse_entered" from="InventoryIcon" to="." method="_on_inventory_icon_mouse_entered"]
+[connection signal="mouse_exited" from="InventoryIcon" to="." method="_on_inventory_icon_mouse_exited"]

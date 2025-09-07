@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dwqlr445n1v1b" path="res://Assets/Arts/tuna.png" id="2_c4ibo"]
 
 [node name="Fish" type="Node2D"]
-z_index = 1
 script = ExtResource("1_twvwo")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("2_c4ibo")
 stretch_mode = 3
