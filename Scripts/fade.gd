@@ -1,10 +1,11 @@
 extends CanvasLayer
-
+signal transition
 @onready var animation := $AnimationPlayer
 var _next_scene_path := ""
 
 func fade_transition(path : String):
-	Global.game_paused.emit()
+	Global.pause_game()
+	transition.emit()
 	_next_scene_path = path
 	show()
 	animation.play("fade_in")
@@ -14,7 +15,7 @@ func _on_animation_finished(anim_name: String):
 		get_tree().change_scene_to_file(_next_scene_path)
 		animation.play("fade_out")
 	elif anim_name == "fade_out":
-		Global.game_unpaused.emit()
+		Global.unpause_game()
 		hide()
 		_next_scene_path = ""
 

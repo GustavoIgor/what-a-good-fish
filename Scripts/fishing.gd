@@ -3,7 +3,6 @@ extends CanvasLayer
 @onready var bar = $Panel/GrayBar
 @onready var green_zone = $Panel/GrayBar/GreenBar
 @onready var pointer = $Panel/GrayBar/Pointer
-@onready var timer = $PointerTimer
 
 @export var pointer_speed := 300.0  # px per second
 
@@ -13,7 +12,6 @@ var success_zone = Rect2()  # Green area
 func _ready():
 	randomize_fishing_zone()
 	Global.pause_game()
-	timer.start()
 
 func _process(delta):
 	pointer.position.x += pointer_speed * delta * pointer_dir
@@ -37,6 +35,7 @@ func check_result():
 	Global.change_stamina(-33)
 	if pointer_x >= success_zone.position.x and pointer_x <= success_zone.position.x + success_zone.size.x:
 		Global.fish_caught.emit(true)
+		InventoryManager.add_fish(FishGenerator.generate_random_fish())
 	else:
 		Global.fish_caught.emit(false)
 	queue_free()

@@ -1,31 +1,31 @@
 extends Panel
+class_name InventorySlot
 
-var item_class = preload("res://Scenes/fish.tscn")
-var item = null
+# Function to slots
+# TODO show the data while hovering and modulate it for other types of items.
+
+var data: FishData = null
+
+@onready var icon: TextureRect = $Icon
+@onready var label: Label = $Label
 
 func _ready() -> void:
-	if randi() % 2 == 1:
-		item = item_class.instantiate()
-		add_child(item)
-	refresh_style()
+	refresh()
 
-func refresh_style():
-	if item == null:
-		self.modulate = Color(1, 1, 1, 0.5)
+func set_data(new_data: FishData) -> void:
+	data = new_data
+	refresh()
+
+func clear() -> void:
+	data = null
+	refresh()
+
+func refresh() -> void:
+	if data:
+		modulate = Color(1,1,1,1)
+		icon.texture = data.icon
+		label.text = data.name
 	else:
-		self.modulate = Color(1, 1, 1, 1)
-
-func pick_from_slot():
-	remove_child(item)
-	var inventory_node = find_parent("Inventory")
-	inventory_node.add_child(item)
-	item = null
-	refresh_style()
-
-func put_into_slot(new_item):
-	item = new_item
-	item.position = Vector2(0, 0)
-	var inventory_node = find_parent("Inventory")
-	inventory_node.remove_child(item)
-	add_child(item)
-	refresh_style()
+		modulate = Color(1,1,1,0.5)
+		icon.texture = null
+		label.text = ""

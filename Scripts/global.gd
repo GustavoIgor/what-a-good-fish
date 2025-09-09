@@ -4,7 +4,6 @@ signal game_unpaused
 signal changed
 signal money_changed
 signal stamina_changed
-signal fish_changed
 signal fish_caught(caught : bool)
 
 var change := false
@@ -33,10 +32,6 @@ func change_stamina(amount : int):
 	stamina = clamp(stamina + amount, 0, 100)
 	stamina_changed.emit()
 
-func change_fish(amount : int):
-	fish += amount
-	fish_changed.emit()
-
 func descent(amount : int):
 	if amount == 0:
 		Fade.fade_transition("res://Scenes/dungeon.tscn")
@@ -46,14 +41,12 @@ func descent(amount : int):
 		win()
 		return
 	change_money(fish * 500)
-	change_fish(-fish)
 	stamina = 100
 	Fade.fade_transition("res://Scenes/dungeon.tscn")
 
 func _on_fish_caught(caught : bool):
 	if caught:
 		DialogueManager.start_dialogue("fish_caught")
-		change_fish(1)
 	else:
 		DialogueManager.start_dialogue("fish_caught_failed")
 
