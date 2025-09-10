@@ -8,6 +8,7 @@ texture = ExtResource("1_12ej0")
 
 [node name="Slot" type="Panel"]
 custom_minimum_size = Vector2(64, 64)
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_0n8tc")
 script = ExtResource("2_67ou1")
 
@@ -35,6 +36,5 @@ anchor_bottom = 1.0
 offset_top = -23.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "teste"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -9,8 +9,8 @@ signal fish_caught(caught : bool)
 var change := false
 var money := 0
 var stamina := 100
-var level := 1
-var fish := 0
+var max_stamina := 100
+var level := 4
 var fishing := false
 
 func _ready() -> void:
@@ -29,7 +29,7 @@ func change_money(amount : int):
 	money_changed.emit()
 
 func change_stamina(amount : int):
-	stamina = clamp(stamina + amount, 0, 100)
+	stamina = clamp(stamina + amount, 0, max_stamina)
 	stamina_changed.emit()
 
 func descent(amount : int):
@@ -37,12 +37,18 @@ func descent(amount : int):
 		Fade.fade_transition("res://Scenes/dungeon.tscn")
 		return
 	level += amount
+	
 	if money >= 10000:
 		win()
 		return
-	change_money(fish * 500)
-	stamina = 100
-	Fade.fade_transition("res://Scenes/dungeon.tscn")
+	
+	stamina = max_stamina
+	if level % 10 == 0:
+		Fade.fade_transition("res://Scenes/dungeon.tscn")
+	elif level % 5 == 0:
+		Fade.fade_transition("res://Scenes/shop_zone.tscn")
+	else:
+		Fade.fade_transition("res://Scenes/dungeon.tscn")
 
 func _on_fish_caught(caught : bool):
 	if caught:

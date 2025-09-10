@@ -15,7 +15,7 @@ func _ready():
 	generate_room()
 	place_objects()
 	place_player()
-	SoundManager.play_music(load("res://Assets/music/WHAT A GOOD FISH.wav"))
+	#SoundManager.play_music(load("res://Assets/music/WHAT A GOOD FISH.wav"), false, -10)
 
 func generate_room():
 	# Set all tiles to floor first

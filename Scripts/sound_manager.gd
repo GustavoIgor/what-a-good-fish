@@ -20,11 +20,13 @@ func play_sfx(sound: AudioStream, volume: int = 0):
 		sfx.stream = sound
 		sfx.play()
 
-func play_music(music_stream: AudioStream, force_restart := false):
+func play_music(music_stream: AudioStream, force_restart := false, volume : int = 0):
 	if current_music == music_stream and !force_restart:
 		return  # já está tocando
+	
 	current_music = music_stream
 	music.stop()
+	music.volume_db = volume
 	music.stream = music_stream
 	music.play()
 

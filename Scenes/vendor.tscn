@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://5rua4ytttpht"]
+
+[ext_resource type="Script" uid="uid://bp7csr3kxvcf8" path="res://Scripts/vendor.gd" id="1_nh7am"]
+[ext_resource type="Texture2D" uid="uid://dfcmc2sccunel" path="res://Assets/Arts/Tobias.png" id="1_ohb2d"]
+[ext_resource type="Texture2D" uid="uid://xlcr4k1r1kec" path="res://Assets/Arts/table.png" id="2_nh7am"]
+[ext_resource type="PackedScene" uid="uid://bj7vr771u0jgg" path="res://Scenes/shop_interface.tscn" id="4_yjsif"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjsif"]
+size = Vector2(12, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osmvj"]
+size = Vector2(66, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohb2d"]
+size = Vector2(7, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p60s0"]
+size = Vector2(68, 90)
+
+[node name="Vendor" type="Node2D"]
+script = ExtResource("1_nh7am")
+
+[node name="Tobias" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 19
+
+[node name="Sprite2D" type="Sprite2D" parent="Tobias"]
+texture = ExtResource("1_ohb2d")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tobias"]
+shape = SubResource("RectangleShape2D_yjsif")
+
+[node name="Table" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Table"]
+position = Vector2(0, 31)
+texture = ExtResource("2_nh7am")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+position = Vector2(0, 21.5)
+shape = SubResource("RectangleShape2D_osmvj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Table"]
+position = Vector2(-29.5, 48)
+shape = SubResource("RectangleShape2D_ohb2d")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Table"]
+position = Vector2(29.5, 48)
+shape = SubResource("RectangleShape2D_ohb2d")
+
+[node name="ShopArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopArea2D"]
+position = Vector2(0, 29)
+shape = SubResource("RectangleShape2D_p60s0")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -83.0
+offset_top = -39.0
+offset_right = 83.0
+offset_bottom = -16.0
+text = "PRESS 'T' TO INTERACT"
+
+[node name="ShopInterface" parent="." instance=ExtResource("4_yjsif")]
+visible = false
+
+[connection signal="body_entered" from="ShopArea2D" to="." method="_on_shop_area_2d_body_entered"]
+[connection signal="body_exited" from="ShopArea2D" to="." method="_on_shop_area_2d_body_exited"]

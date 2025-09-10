@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj7vr771u0jgg"]
+
+[ext_resource type="Script" uid="uid://daoccrywn6p6w" path="res://Scripts/shop_interface.gd" id="1_t8rnt"]
+[ext_resource type="PackedScene" uid="uid://csb4cl8020gwn" path="res://Scenes/slot.tscn" id="2_tq3ty"]
+
+[node name="ShopInterface" type="CanvasLayer"]
+script = ExtResource("1_t8rnt")
+singular_slot = ExtResource("2_tq3ty")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(710, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 326.0
+grow_vertical = 2
+mouse_filter = 2
+columns = 5
+
+[node name="TradeContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -335.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="InitialLabel" type="Label" parent="Panel/TradeContainer"]
+layout_mode = 2
+text = "I want to buy those fish, let me look at it"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TradeContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Slot" parent="Panel/TradeContainer/HBoxContainer" instance=ExtResource("2_tq3ty")]
+layout_mode = 2
+
+[node name="Impressions Label" type="Label" parent="Panel/TradeContainer"]
+layout_mode = 2
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Panel/TradeContainer"]
+layout_mode = 2
+text = "MY PRICE IS:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SellButton" type="Button" parent="Panel/TradeContainer"]
+layout_mode = 2
+text = "SELL
+"
+
+[node name="DragPreview" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Panel/TradeContainer/SellButton" to="." method="_on_sell_button_pressed"]
