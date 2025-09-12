@@ -7,7 +7,7 @@ signal stamina_changed
 signal fish_caught(caught : bool)
 
 var change := false
-var money := 0
+var money := 0.0
 var stamina := 100
 var max_stamina := 100
 var level := 4
@@ -23,7 +23,7 @@ func _on_changed():
 func no_change():
 	change = false
 
-func change_money(amount : int):
+func change_money(amount : float):
 	money = clamp(money + amount, 0, 100000)
 	print(money)
 	money_changed.emit()

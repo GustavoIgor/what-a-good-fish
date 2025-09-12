@@ -58,13 +58,13 @@ alignment = 1
 [node name="Slot" parent="Panel/TradeContainer/HBoxContainer" instance=ExtResource("2_tq3ty")]
 layout_mode = 2
 
-[node name="Impressions Label" type="Label" parent="Panel/TradeContainer"]
+[node name="ImpressionsLabel" type="Label" parent="Panel/TradeContainer"]
 layout_mode = 2
 text = "..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="Panel/TradeContainer"]
+[node name="PriceLabel" type="Label" parent="Panel/TradeContainer"]
 layout_mode = 2
 text = "MY PRICE IS:"
 horizontal_alignment = 1

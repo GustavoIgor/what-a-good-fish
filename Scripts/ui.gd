@@ -17,7 +17,7 @@ func _ready() -> void:
 	_on_inventory_updated()
 
 func _on_money_changed():
-	money_label.text = "MONEY: " + str(Global.money)
+	money_label.text = "MONEY: " + str("%.2f" % Global.money)
 	
 func _on_stamina_changed():
 	stamina_progress_bar.value = Global.stamina
