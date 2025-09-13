@@ -51,7 +51,6 @@ func _on_inventory_updated() -> void:
 		else:
 			slot.clear()
 
-
 func _on_sell_button_pressed() -> void:
 	if fish_index != -1:
 		Global.change_money(valor)
@@ -83,7 +82,6 @@ func analize_fish():
 		5:
 			rarity_impression = "Where... where did you find it? It's majestic!"
 
-	# Weight impression based on the new weight ranges
 	var weight_impression: String
 	if fish_data.weight >= 0.1 and fish_data.weight < 0.5:
 		weight_impression = "It's very small and light..."

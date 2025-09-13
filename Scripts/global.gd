@@ -10,6 +10,8 @@ var change := false
 var money := 0.0
 var stamina := 100
 var max_stamina := 100
+var hp := 100
+var max_hp := 100
 var level := 4
 var fishing := false
 
@@ -25,8 +27,12 @@ func no_change():
 
 func change_money(amount : float):
 	money = clamp(money + amount, 0, 100000)
-	print(money)
 	money_changed.emit()
+
+func change_hp(amount : int):
+	hp = clamp(hp + amount, 0, max_hp)
+	if hp == 0:
+		game_over()
 
 func change_stamina(amount : int):
 	stamina = clamp(stamina + amount, 0, max_stamina)
@@ -58,6 +64,9 @@ func _on_fish_caught(caught : bool):
 
 func win():
 	Fade.fade_transition("res://Scenes/win.tscn")
+
+func game_over():
+	pass
 
 func pause_game():
 	game_paused.emit()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpgloi66js23f"]
+
+[ext_resource type="Script" uid="uid://61xrva7qdu2i" path="res://Scripts/item_inventory.gd" id="1_lvxgp"]
+
+[node name="ItemInventory" type="CanvasLayer"]
+script = ExtResource("1_lvxgp")
