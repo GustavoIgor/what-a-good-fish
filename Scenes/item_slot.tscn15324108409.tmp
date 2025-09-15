@@ -4,61 +4,43 @@
 [ext_resource type="Script" uid="uid://8qf3xt3y7chc" path="res://Scripts/item_slot.gd" id="1_qaprs"]
 
 [node name="ItemSlot" type="TextureRect"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(52, 52)
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_oi8or")
 script = ExtResource("1_qaprs")
+slot_index = null
 
-[node name="Icon" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(52, 52)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -26.0
-offset_right = 26.0
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 47.0
+offset_bottom = 47.0
 stretch_mode = 3
 
 [node name="QuantityLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -15.0
-offset_top = -26.0
-offset_right = -5.0
-offset_bottom = -3.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
+offset_left = 37.0
+offset_top = 24.0
+offset_right = 47.0
+offset_bottom = 47.0
 text = "1"
 
 [node name="HoverPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 6.0
 offset_top = -16.0
 offset_right = 46.0
 offset_bottom = 46.0
-mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HoverPanel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HoverPanel/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 10
 theme_override_font_sizes/italics_font_size = 10
 theme_override_font_sizes/mono_font_size = 10

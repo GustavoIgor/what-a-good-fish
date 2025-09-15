@@ -2,73 +2,109 @@ extends CanvasLayer
 
 #This is the node to actually show the fish inventory
 
+@export var fish_slot : PackedScene
+@export var item_slot : PackedScene
 @onready var inventory_icon := $InventoryIcon
-@onready var inventory_panel := $InventoryPanel
-@onready var grid_container := $InventoryPanel/GridContainer
+@onready var fish_inventory_panel := $FishInventoryPanel
+@onready var fish_grid_container := $FishInventoryPanel/GridContainer
+@onready var item_inventory_panel := $ItemInventoryPanel
+@onready var item_grid_container := $ItemInventoryPanel/GridContainer
 @onready var drag_preview := $DragPreview
 
-const SlotClass = preload("res://Scripts/slot.gd")
+const FISH_SLOT_CLASS = preload("res://Scripts/slot.gd")
+const ITEM_SLOT_CLASS = preload("res://Scripts/item_slot.gd")
 
 var holding_from_index: int = -1
-var holding_data: FishData = null
+var holding_fish_data: FishData = null
+var holding_item : Dictionary = {}
 var entered_inventory_icon := false
 
 func _ready() -> void:
+	set_slots()
 	# connect the slots
-	for i in range(grid_container.get_child_count()):
-		var slot: SlotClass = grid_container.get_child(i)
+	for i in range(fish_grid_container.get_child_count()):
+		var slot : FISH_SLOT_CLASS = fish_grid_container.get_child(i)
 		slot.gui_input.connect(slot_gui_input.bind(slot, i))
+	for i in range(item_grid_container.get_child_count()):
+		var slot : ITEM_SLOT_CLASS = item_grid_container.get_child(i)
+		slot.gui_input.connect(item_slot_gui_input.bind(slot, i))
 
 	InventoryManager.connect("inventory_updated", _on_inventory_updated)
-	inventory_panel.visible = false
+	fish_inventory_panel.visible = false
 	drag_preview.visible = false
 	_on_inventory_updated()
 
 # The drag_preview is always following the cursor, and in the right moment will appear.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	drag_preview.global_position = get_viewport().get_mouse_position()
 
 # Manages the player interaction with the inventory.
-func slot_gui_input(event: InputEvent, slot: SlotClass, slot_index: int) -> void:
+func slot_gui_input(event: InputEvent, slot: FISH_SLOT_CLASS, slot_index: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		#If the player is holding a fish, swaps.
-		if holding_data:
+		if holding_fish_data:
 			if InventoryManager.swap_fish(holding_from_index, slot_index):
 				cancel_drag()
 		else:
 			#If player is not holding a fish, the player will hold the fish if there is any.
 			if slot.data:
-				holding_data = slot.data
+				holding_fish_data = slot.data
 				holding_from_index = slot_index
 				drag_preview.texture = slot.icon.texture
 				drag_preview.visible = true
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		# Clicking in the inventory icon make the panel visible (if it isn't) or invisible (if it is).
-		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and entered_inventory_icon:
-			inventory_panel.visible = !inventory_panel.visible
-			# Making the player throw the holding item away.
-			cancel_drag()
+func item_slot_gui_input(event: InputEvent, slot: ITEM_SLOT_CLASS, slot_index: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if holding_item:
+			if InventoryManager.swap_item(holding_from_index, slot_index):
+				cancel_drag()
+		else:
+			if slot.data != {}:
+				holding_item = slot.data
+				holding_from_index = slot_index
+				drag_preview.texture = slot.icon.texture
+				drag_preview.visible = true
+
 
 func cancel_drag() -> void:
-	holding_data = null
+	holding_fish_data = null
 	holding_from_index = -1
+	holding_item = {}
 	drag_preview.visible = false
 
 # downloading the data in Inventory Manager
 func _on_inventory_updated() -> void:
-	for i in range(grid_container.get_child_count()):
-		var slot: SlotClass = grid_container.get_child(i)
+	for i in range(fish_grid_container.get_child_count()):
+		var slot: FISH_SLOT_CLASS = fish_grid_container.get_child(i)
 		var fish: FishData = InventoryManager.get_fish_at(i)
 		if fish:
 			slot.set_data(fish)
 		else:
 			slot.clear()
+	for i in range(item_grid_container.get_child_count()):
+		var slot : ITEM_SLOT_CLASS = item_grid_container.get_child(i)
+		var item : Dictionary = InventoryManager.get_item_at(i)
+		if item:
+			slot.set_data(item)
+		else:
+			slot.clear()
 
-#Functions for the icon
-func _on_inventory_icon_mouse_entered() -> void:
-	entered_inventory_icon = true
+func set_slots():
+	for i in InventoryManager.fish_capacity:
+		fish_grid_container.add_child(fish_slot.instantiate())
+	for i in InventoryManager.item_capacity:
+		item_grid_container.add_child(item_slot.instantiate())
 
-func _on_inventory_icon_mouse_exited() -> void:
-	entered_inventory_icon = false
+#Functions for the icons
+
+func _on_item_inventory_icon_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		item_inventory_panel.visible = !item_inventory_panel.visible
+		fish_inventory_panel.visible = false
+		cancel_drag()
+
+func _on_fish_inventory_icon_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		fish_inventory_panel.visible = !fish_inventory_panel.visible
+		item_inventory_panel.visible = false
+		cancel_drag()

@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://buhpv4hjsd8iw"]
+[gd_scene load_steps=7 format=3 uid="uid://buhpv4hjsd8iw"]
 
 [ext_resource type="Script" uid="uid://bwnhgdg0i62i2" path="res://Scripts/inventory.gd" id="1_0n8tc"]
 [ext_resource type="Texture2D" uid="uid://bccm6r8f4lhw7" path="res://Assets/Arts/InventoryBack.png" id="1_k5gp2"]
 [ext_resource type="Texture2D" uid="uid://dkpq3psmy2jsy" path="res://Assets/Arts/inventoryIcon.png" id="2_k1vlg"]
+[ext_resource type="PackedScene" uid="uid://ew425eutsfhw" path="res://Scenes/item_slot.tscn" id="3_k1vlg"]
 [ext_resource type="PackedScene" uid="uid://csb4cl8020gwn" path="res://Scenes/slot.tscn" id="4_0n8tc"]
+[ext_resource type="Texture2D" uid="uid://43pw3e238xmy" path="res://Assets/Arts/fishInventoryIcon.png" id="4_c5ffv"]
 
 [node name="Inventory" type="CanvasLayer"]
 script = ExtResource("1_0n8tc")
+fish_slot = ExtResource("4_0n8tc")
+item_slot = ExtResource("3_k1vlg")
 
-[node name="InventoryIcon" type="TextureRect" parent="."]
+[node name="FishInventoryIcon" type="TextureRect" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -21,9 +25,24 @@ offset_bottom = -120.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2
+texture = ExtResource("4_c5ffv")
+
+[node name="ItemInventoryIcon" type="TextureRect" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = -10.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
 texture = ExtResource("2_k1vlg")
 
-[node name="InventoryPanel" type="TextureRect" parent="."]
+[node name="FishInventoryPanel" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -37,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_k5gp2")
 
-[node name="GridContainer" type="GridContainer" parent="InventoryPanel"]
+[node name="GridContainer" type="GridContainer" parent="FishInventoryPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,95 +73,37 @@ theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 45
 columns = 10
 
-[node name="Slot" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
+[node name="ItemInventoryPanel" type="TextureRect" parent="."]
+modulate = Color(0.752941, 0.596078, 0.768627, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -136.0
+offset_right = 352.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_k5gp2")
 
-[node name="Slot2" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot3" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot4" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot5" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot6" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot7" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot8" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot9" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot10" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot11" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot12" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot13" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot14" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot15" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot16" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot17" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot18" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot19" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot20" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot21" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot22" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot23" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot24" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot25" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot26" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot27" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot28" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot29" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
-
-[node name="Slot30" parent="InventoryPanel/GridContainer" instance=ExtResource("4_0n8tc")]
-layout_mode = 2
+[node name="GridContainer" type="GridContainer" parent="ItemInventoryPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -348.0
+offset_top = -114.0
+offset_right = 348.0
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 45
+columns = 10
 
 [node name="DragPreview" type="TextureRect" parent="."]
 visible = false
@@ -150,5 +111,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[connection signal="mouse_entered" from="InventoryIcon" to="." method="_on_inventory_icon_mouse_entered"]
-[connection signal="mouse_exited" from="InventoryIcon" to="." method="_on_inventory_icon_mouse_exited"]
+[connection signal="gui_input" from="FishInventoryIcon" to="." method="_on_fish_inventory_icon_gui_input"]
+[connection signal="gui_input" from="ItemInventoryIcon" to="." method="_on_item_inventory_icon_gui_input"]

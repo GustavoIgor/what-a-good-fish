@@ -15,6 +15,7 @@ func _ready():
 	generate_room()
 	place_objects()
 	place_player()
+	InventoryManager.add_item(ItemGenerator.small_potion, 1)
 	#SoundManager.play_music(load("res://Assets/music/WHAT A GOOD FISH.wav"), false, -10)
 
 func generate_room():

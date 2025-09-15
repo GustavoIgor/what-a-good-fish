@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ConsumableItem" load_steps=3 format=3 uid="uid://bm2duyfix7lyb"]
+
+[ext_resource type="Texture2D" uid="uid://c7u3xsqjborse" path="res://Assets/Arts/small_potion.png" id="1_3a7mt"]
+[ext_resource type="Script" uid="uid://8cr13k3a1kow" path="res://Resources/consumable_item.gd" id="2_8k1e3"]
+
+[resource]
+script = ExtResource("2_8k1e3")
+heal_amount = 20
+stamina_restore = 0
+id = "0"
+name = "Small Potion"
+description = "It's a regular potion"
+icon = ExtResource("1_3a7mt")
+stackable = true
+metadata/_custom_type_script = "uid://8cr13k3a1kow"
