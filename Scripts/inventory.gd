@@ -4,7 +4,6 @@ extends CanvasLayer
 
 @export var fish_slot : PackedScene
 @export var item_slot : PackedScene
-@onready var inventory_icon := $InventoryIcon
 @onready var fish_inventory_panel := $FishInventoryPanel
 @onready var fish_grid_container := $FishInventoryPanel/GridContainer
 @onready var item_inventory_panel := $ItemInventoryPanel

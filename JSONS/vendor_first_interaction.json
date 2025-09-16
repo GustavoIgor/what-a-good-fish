@@ -1,0 +1,31 @@
+[
+	{
+		"once" : "true",
+		"text" : "Hello there! I'm a vendor, if you want to be more 'humane' I'm Tobias",
+		"name" : "Tobias"
+	},
+	{
+		"text" : "So... you are a merchant, why is that if I may?",
+		"name" : "Winston"
+	},
+	{
+		"text" : "Why not? new faces, new stories; new itens, new money!",
+		"name" : "Tobias"
+	},
+	{
+		"text" : "Fair enough.",
+		"name" : "Winston"
+	},
+	{
+		"text" : "anyways. you are a adventure with that leg?",
+		"name" : "Tobias"
+	},
+	{
+		"text" : "It's the only I have. Still.",
+		"name" : "Winston"
+	},
+	{
+		"text" : "You are brave... anyways, let's trade!",
+		"name" : "Tobias"
+	}
+]

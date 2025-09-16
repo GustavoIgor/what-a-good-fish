@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bp7csr3kxvcf8" path="res://Scripts/vendor.gd" id="1_nh7am"]
 [ext_resource type="Texture2D" uid="uid://dfcmc2sccunel" path="res://Assets/Arts/Tobias.png" id="1_ohb2d"]
 [ext_resource type="Texture2D" uid="uid://xlcr4k1r1kec" path="res://Assets/Arts/table.png" id="2_nh7am"]
-[ext_resource type="PackedScene" uid="uid://bj7vr771u0jgg" path="res://Scenes/shop_interface.tscn" id="4_yjsif"]
+[ext_resource type="PackedScene" uid="uid://cyr4bt3abn8kc" path="res://Scenes/trade_interface.tscn" id="4_yjsif"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjsif"]
 size = Vector2(12, 32)
@@ -67,7 +67,7 @@ offset_right = 83.0
 offset_bottom = -16.0
 text = "PRESS 'T' TO INTERACT"
 
-[node name="ShopInterface" parent="." instance=ExtResource("4_yjsif")]
+[node name="TradeInterface" parent="." instance=ExtResource("4_yjsif")]
 visible = false
 
 [connection signal="body_entered" from="ShopArea2D" to="." method="_on_shop_area_2d_body_entered"]

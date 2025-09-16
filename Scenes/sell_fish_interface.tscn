@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj7vr771u0jgg"]
+[gd_scene load_steps=3 format=3 uid="uid://ycbygfo5afyr"]
 
-[ext_resource type="Script" uid="uid://daoccrywn6p6w" path="res://Scripts/shop_interface.gd" id="1_t8rnt"]
-[ext_resource type="PackedScene" uid="uid://csb4cl8020gwn" path="res://Scenes/slot.tscn" id="2_tq3ty"]
+[ext_resource type="Script" uid="uid://o1h51ufn3jws" path="res://Scripts/sell_fish_interface.gd" id="1_5l7gc"]
+[ext_resource type="PackedScene" uid="uid://csb4cl8020gwn" path="res://Scenes/slot.tscn" id="2_o462m"]
 
-[node name="ShopInterface" type="CanvasLayer"]
-script = ExtResource("1_t8rnt")
-singular_slot = ExtResource("2_tq3ty")
+[node name="SellFishInterface" type="CanvasLayer"]
+script = ExtResource("1_5l7gc")
+singular_slot = ExtResource("2_o462m")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(710, 400)
@@ -55,7 +55,7 @@ layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Slot" parent="Panel/TradeContainer/HBoxContainer" instance=ExtResource("2_tq3ty")]
+[node name="Slot" parent="Panel/TradeContainer/HBoxContainer" instance=ExtResource("2_o462m")]
 layout_mode = 2
 
 [node name="ImpressionsLabel" type="Label" parent="Panel/TradeContainer"]
@@ -79,4 +79,4 @@ text = "SELL
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="pressed" from="Panel/TradeContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="mouse_entered" from="Panel/TradeContainer/SellButton" to="." method="_on_sell_button_pressed"]

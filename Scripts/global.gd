@@ -15,6 +15,10 @@ var max_hp := 100
 var level := 4
 var fishing := false
 
+var events : Dictionary = {
+	"vendor_first_interaction" : false
+}
+
 func _ready() -> void:
 	changed.connect(_on_changed)
 	fish_caught.connect(_on_fish_caught)

@@ -23,8 +23,8 @@ SoundManager="*res://Scenes/sound_manager.tscn"
 Fade="*res://Scenes/fade.tscn"
 InventoryManager="*res://Scenes/inventory_manager.tscn"
 FishGenerator="*res://Scenes/fish_generator.tscn"
-ItemInventoryManager="*res://Scenes/item_inventory_manager.tscn"
 ItemGenerator="*res://Scenes/item_generator.tscn"
+DialogueEventManager="*res://Scenes/dialogue_event_manager.tscn"
 
 [display]
 

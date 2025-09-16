@@ -74,6 +74,7 @@ theme_override_constants/v_separation = 45
 columns = 10
 
 [node name="ItemInventoryPanel" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.752941, 0.596078, 0.768627, 1)
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyr4bt3abn8kc"]
+
+[ext_resource type="Script" uid="uid://ifouu8dgdpf3" path="res://Scripts/trade_interface.gd" id="1_rgmrr"]
+[ext_resource type="PackedScene" uid="uid://ycbygfo5afyr" path="res://Scenes/sell_fish_interface.tscn" id="1_s5mvu"]
+[ext_resource type="PackedScene" uid="uid://ck0h6u5611vuw" path="res://Scenes/sell_item_interface.tscn" id="2_rgmrr"]
+[ext_resource type="PackedScene" uid="uid://dh5symvsxvmu8" path="res://Scenes/buy_item_interface.tscn" id="3_8rqji"]
+
+[node name="TradeInterface" type="CanvasLayer"]
+script = ExtResource("1_rgmrr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SellFishButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SELL FISH"
+
+[node name="SellItemsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SELL ITEMS"
+
+[node name="BuyItemsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "BUY ITEMS
+"
+
+[node name="SellFishInterface" parent="." instance=ExtResource("1_s5mvu")]
+visible = false
+
+[node name="SellItemInterface" parent="." instance=ExtResource("2_rgmrr")]
+visible = false
+
+[node name="BuyItemInterface" parent="." instance=ExtResource("3_8rqji")]
+visible = false
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/SellFishButton" to="." method="_on_sell_fish_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SellItemsButton" to="." method="_on_sell_items_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BuyItemsButton" to="." method="_on_buy_items_button_pressed"]

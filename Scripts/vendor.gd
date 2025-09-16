@@ -1,6 +1,6 @@
 extends Node2D
 @onready var label := $Label
-@onready var shop_interface = $ShopInterface
+@onready var trade_interface = $TradeInterface
 var inside := false
 
 func _on_shop_area_2d_body_entered(_body: Node2D) -> void:
@@ -13,6 +13,9 @@ func _on_shop_area_2d_body_exited(_body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shop") and inside:
-		shop_interface.visible = !shop_interface.visible
+		if Global.events["vendor_first_interaction"] == false:
+			DialogueManager.start_dialogue("vendor_first_interaction")
+		else:
+			trade_interface.visible = !trade_interface.visible
 	if event.is_action_pressed("cancel"):
-		shop_interface.visible = false
+		trade_interface.visible = false

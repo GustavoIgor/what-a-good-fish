@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck0h6u5611vuw"]
+
+[ext_resource type="Script" uid="uid://mc4toxxwwwcj" path="res://Scripts/sell_item_interface.gd" id="1_uw2l5"]
+
+[node name="SellItemInterface" type="CanvasLayer"]
+script = ExtResource("1_uw2l5")

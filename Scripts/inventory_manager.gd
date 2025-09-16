@@ -74,19 +74,22 @@ func add_item(item: Item, quantity: int = 1) -> bool:
 			if entry != {}:
 				if entry["item"].id == item.id:
 					entry["quantity"] += quantity
+					inventory_updated.emit()
 					return true
 	for i in range(item_capacity):
 		if item_inventory[i] == {}:
 			item_inventory[i] = { "item": item, "quantity": quantity }
+			inventory_updated.emit()
 			return true
 	return false
 
 func remove_item(item: Item, quantity: int = 1) -> void:
 	for entry in item_inventory:
-		if entry["item"].id == item.id:
+		if entry["item"].name == item.name:
 			entry["quantity"] -= quantity
 			if entry["quantity"] <= 0:
 				item_inventory.erase(entry)
+				inventory_updated.emit()
 			return
 
 func remove_item_by_index(index : int):
@@ -113,8 +116,6 @@ func swap_item(from_index: int, to_index: int) -> bool:
 
 func get_item_at(slot_index: int):
 	return item_inventory[slot_index] if slot_index >= 0 and slot_index < item_inventory.size() else {}
-
-
 
 func has_item(id: String, quantity: int = 1) -> bool:
 	for entry in item_inventory:

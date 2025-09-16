@@ -7,7 +7,7 @@
 texture = ExtResource("1_12ej0")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12ej0"]
-bg_color = Color(0, 0, 0, 0.85098)
+bg_color = Color(0, 0, 0, 0.784314)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -37,7 +37,7 @@ grow_vertical = 2
 [node name="HoverPanel" type="Panel" parent="."]
 visible = false
 z_index = 2
-custom_minimum_size = Vector2(128, 100)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,10 +64,12 @@ mouse_filter = 2
 alignment = 1
 
 [node name="NameLabel" type="Label" parent="HoverPanel/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "res"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="RarityLabel" type="Label" parent="HoverPanel/VBoxContainer"]
 layout_mode = 2
