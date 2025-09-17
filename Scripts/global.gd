@@ -14,6 +14,7 @@ var hp := 100
 var max_hp := 100
 var level := 4
 var fishing := false
+var is_descending := false
 
 var events : Dictionary = {
 	"vendor_first_interaction" : false
@@ -47,7 +48,6 @@ func descent(amount : int):
 		Fade.fade_transition("res://Scenes/dungeon.tscn")
 		return
 	level += amount
-	
 	if money >= 10000:
 		win()
 		return

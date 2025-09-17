@@ -92,13 +92,13 @@ func remove_item(item: Item, quantity: int = 1) -> void:
 				inventory_updated.emit()
 			return
 
-func remove_item_by_index(index : int):
-	if index >= 0 and index < item_inventory.size():
-		var f = item_inventory[index]
-		item_inventory[index] = {}
+func remove_item_by_index(index : int, quantity: int = 1):
+	if item_inventory[index]:
+		item_inventory[index]["quantity"] -= quantity
+		if item_inventory[index]["quantity"] <= 0:
+			item_inventory[index] = {}
 		inventory_updated.emit()
-		return f
-	return null
+		return
 
 func swap_item(from_index: int, to_index: int) -> bool:
 	if from_index == to_index:

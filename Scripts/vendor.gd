@@ -3,6 +3,8 @@ extends Node2D
 @onready var trade_interface = $TradeInterface
 var inside := false
 
+
+
 func _on_shop_area_2d_body_entered(_body: Node2D) -> void:
 	label.show()
 	inside = true

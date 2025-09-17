@@ -5,6 +5,8 @@ var inside := false
 
 func _input(event):
 	if event.is_action_pressed("fishing") and inside:
+		if Global.fishing:
+			return
 		if Global.stamina < 33:
 			label.text = "You have no stamina to fish now"
 		elif InventoryManager.get_fish_quantity() >= InventoryManager.fish_capacity:

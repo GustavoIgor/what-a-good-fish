@@ -6,10 +6,9 @@
 [resource]
 script = ExtResource("2_8k1e3")
 heal_amount = 20
-stamina_restore = 0
 id = "0"
 name = "Small Potion"
 description = "It's a regular potion"
+price = 150.5
 icon = ExtResource("1_3a7mt")
-stackable = true
 metadata/_custom_type_script = "uid://8cr13k3a1kow"

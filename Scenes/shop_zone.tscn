@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://udsgcl4sayq0"]
+[gd_scene load_steps=8 format=4 uid="uid://udsgcl4sayq0"]
 
+[ext_resource type="Script" uid="uid://5qv5hkhf5brg" path="res://Scripts/shop_zone.gd" id="1_gdxno"]
 [ext_resource type="Texture2D" uid="uid://d5c1uqs7uvtw" path="res://Assets/Arts/ground_tiles.png" id="1_w7qgv"]
 [ext_resource type="PackedScene" uid="uid://5rua4ytttpht" path="res://Scenes/vendor.tscn" id="2_gdxno"]
 [ext_resource type="PackedScene" uid="uid://dou71pvxktk12" path="res://Scenes/player.tscn" id="3_rklug"]
@@ -20,6 +21,7 @@ physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_uag1l")
 
 [node name="Shop_zone" type="Node2D"]
+script = ExtResource("1_gdxno")
 
 [node name="TileWrapper" type="Node2D" parent="."]
 

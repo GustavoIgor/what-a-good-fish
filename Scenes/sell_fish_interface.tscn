@@ -75,8 +75,4 @@ layout_mode = 2
 text = "SELL
 "
 
-[node name="DragPreview" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[connection signal="mouse_entered" from="Panel/TradeContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="pressed" from="Panel/TradeContainer/SellButton" to="." method="_on_sell_button_pressed"]

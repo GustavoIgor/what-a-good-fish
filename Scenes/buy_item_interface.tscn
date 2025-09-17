@@ -1,6 +1,91 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh5symvsxvmu8"]
+[gd_scene load_steps=4 format=3 uid="uid://dh5symvsxvmu8"]
 
 [ext_resource type="Script" uid="uid://c3pgbtt11q5yy" path="res://Scripts/buy_item_interface.gd" id="1_1ryuh"]
+[ext_resource type="PackedScene" uid="uid://ew425eutsfhw" path="res://Scenes/item_slot.tscn" id="2_7rsfw"]
+[ext_resource type="StyleBox" uid="uid://h763tmt77xw7" path="res://Resources/trade_item_interface.tres" id="2_khrdg"]
 
 [node name="BuyItemInterface" type="CanvasLayer"]
 script = ExtResource("1_1ryuh")
+singular_slot = ExtResource("2_7rsfw")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_khrdg")
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+custom_minimum_size = Vector2(330, 380)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -190.0
+offset_right = 340.0
+offset_bottom = 190.0
+grow_vertical = 2
+columns = 5
+
+[node name="TradeContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(330, 380)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -190.0
+offset_right = -10.0
+offset_bottom = 190.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="InitialLabel" type="Label" parent="Panel/TradeContainer"]
+layout_mode = 2
+text = "TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TradeContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemSlot" parent="Panel/TradeContainer/HBoxContainer" instance=ExtResource("2_7rsfw")]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="Panel/TradeContainer"]
+layout_mode = 2
+text = "TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="Panel/TradeContainer"]
+layout_mode = 2
+text = "TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentBalance" type="Label" parent="Panel/TradeContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Panel/TradeContainer"]
+visible = false
+layout_mode = 2
+text = "BUY"
+
+[connection signal="pressed" from="Panel/TradeContainer/BuyButton" to="." method="_on_buy_button_pressed"]

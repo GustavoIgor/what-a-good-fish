@@ -16,6 +16,10 @@ func set_data(new_data: Dictionary) -> void:
 	data = new_data
 	refresh()
 
+func set_data_singular(new_data : Item) -> void:
+	data = {"item" : new_data, "quantity" : 1}
+	refresh()
+
 func clear() -> void:
 	data = {}
 	refresh()

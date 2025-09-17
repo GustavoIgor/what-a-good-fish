@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var  singular_slot : PackedScene
+@export var singular_slot : PackedScene
 @onready var grid_container := $Panel/GridContainer
 @onready var trade_slot := $Panel/TradeContainer/HBoxContainer/Slot
 
