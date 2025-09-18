@@ -25,6 +25,7 @@ InventoryManager="*res://Scenes/inventory_manager.tscn"
 FishGenerator="*res://Scenes/fish_generator.tscn"
 ItemGenerator="*res://Scenes/item_generator.tscn"
 DialogueEventManager="*res://Scenes/dialogue_event_manager.tscn"
+BattleManager="*res://Scenes/battle_manager.tscn"
 
 [display]
 

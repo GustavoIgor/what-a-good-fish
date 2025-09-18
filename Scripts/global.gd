@@ -12,7 +12,7 @@ var stamina := 100
 var max_stamina := 100
 var hp := 100
 var max_hp := 100
-var level := 4
+var level := 1
 var fishing := false
 var is_descending := false
 
