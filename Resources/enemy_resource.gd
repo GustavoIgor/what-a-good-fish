@@ -1,7 +1,7 @@
 extends Resource
 class_name EnemyResource
 
-@export var name: String = "Slime"
+@export var name: String = "Bat"
 @export var level: int = 1
 @export var max_hp: int = 10
 @export var attack: int = 3

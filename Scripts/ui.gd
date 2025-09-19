@@ -20,7 +20,7 @@ func _on_money_changed():
 	money_label.text = "MONEY: " + str("%.2f" % Global.money)
 	
 func _on_stamina_changed():
-	stamina_progress_bar.value = Global.stamina
+	stamina_progress_bar.value = Global.player_stats["stamina"]
 
 func _on_inventory_updated():
 	fish_label.text = "FISH: " + str(InventoryManager.get_fish_quantity())

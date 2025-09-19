@@ -8,13 +8,16 @@ signal fish_caught(caught : bool)
 
 var change := false
 var money := 0.0
-var stamina := 100
-var max_stamina := 100
-var hp := 100
-var max_hp := 100
 var level := 1
 var fishing := false
 var is_descending := false
+
+var player_stats :={
+	"stamina" : 100,
+	"max_stamina" : 100,
+	"hp" : 100,
+	"max_hp" : 100
+}
 
 var events : Dictionary = {
 	"vendor_first_interaction" : false
@@ -35,12 +38,12 @@ func change_money(amount : float):
 	money_changed.emit()
 
 func change_hp(amount : int):
-	hp = clamp(hp + amount, 0, max_hp)
-	if hp == 0:
+	player_stats["hp"] = clamp(player_stats["hp"] + amount, 0, player_stats["max_hp"])
+	if player_stats["hp"] == 0:
 		game_over()
 
 func change_stamina(amount : int):
-	stamina = clamp(stamina + amount, 0, max_stamina)
+	player_stats["stamina"] = clamp(player_stats["stamina"] + amount, 0, player_stats["max_stamina"])
 	stamina_changed.emit()
 
 func descent(amount : int):
@@ -52,7 +55,7 @@ func descent(amount : int):
 		win()
 		return
 	
-	stamina = max_stamina
+	player_stats["stamina"] = player_stats["max_stamina"]
 	if level % 10 == 0:
 		Fade.fade_transition("res://Scenes/dungeon.tscn")
 	elif level % 5 == 0:
@@ -65,6 +68,9 @@ func _on_fish_caught(caught : bool):
 		DialogueManager.start_dialogue("fish_caught")
 	else:
 		DialogueManager.start_dialogue("fish_caught_failed")
+
+func player_attack():
+	return 10
 
 func win():
 	Fade.fade_transition("res://Scenes/win.tscn")

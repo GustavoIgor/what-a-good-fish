@@ -1,6 +1,48 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8d8sjc11lf5e"]
 
-[ext_resource type="Script" uid="uid://62igusdk6fin" path="res://Scripts/battle_manager.gd" id="1_h1ip2"]
+[ext_resource type="Script" uid="uid://c0udg8f77sh3n" path="res://Scripts/battle_manager.gd" id="1_h1ip2"]
 
-[node name="BattleManager" type="Node"]
+[node name="BattleManager" type="CanvasLayer"]
 script = ExtResource("1_h1ip2")
+
+[node name="BattlePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="BattlePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LootPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
