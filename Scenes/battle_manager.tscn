@@ -1,11 +1,185 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8d8sjc11lf5e"]
+[gd_scene load_steps=8 format=3 uid="uid://b8d8sjc11lf5e"]
 
 [ext_resource type="Script" uid="uid://c0udg8f77sh3n" path="res://Scripts/battle_manager.gd" id="1_h1ip2"]
+[ext_resource type="PackedScene" uid="uid://c0gn662kyrh4u" path="res://Scenes/moving_back_ground.tscn" id="2_58ulb"]
+[ext_resource type="PackedScene" uid="uid://ew425eutsfhw" path="res://Scenes/item_slot.tscn" id="2_pjdjj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58ulb"]
+bg_color = Color(1, 0.4745098, 0.5137255, 0.87058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjdjj"]
+bg_color = Color(1, 0, 0, 0.87058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvmj4"]
+bg_color = Color(0.4392157, 0.81960785, 1, 0.87058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1xkj"]
+bg_color = Color(0, 0.48235294, 0.7058824, 0.87058824)
 
 [node name="BattleManager" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_h1ip2")
+item_slot = ExtResource("2_pjdjj")
+
+[node name="MovingBackGround" parent="." instance=ExtResource("2_58ulb")]
+position = Vector2(480, 270)
 
 [node name="BattlePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -194.0
+offset_right = 350.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogPanel" type="Panel" parent="BattlePanel"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BattlePanel/LogPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattlePanel/LogPanel/ScrollContainer"]
+custom_minimum_size = Vector2(700, 80)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionsPanel" type="Panel" parent="BattlePanel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattlePanel/ActionsPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 376.0
+offset_top = -15.5
+offset_right = -3.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Attack" type="Button" parent="BattlePanel/ActionsPanel/HBoxContainer"]
+layout_mode = 2
+text = "ATTACK"
+
+[node name="UseItem" type="Button" parent="BattlePanel/ActionsPanel/HBoxContainer"]
+layout_mode = 2
+text = "USE ITEM"
+
+[node name="Flee" type="Button" parent="BattlePanel/ActionsPanel/HBoxContainer"]
+layout_mode = 2
+text = "FLEE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattlePanel/ActionsPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -45.0
+offset_right = -338.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HPProgressBar" type="ProgressBar" parent="BattlePanel/ActionsPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_58ulb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pjdjj")
+value = 40.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="BattlePanel/ActionsPanel/VBoxContainer/HPProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP : 100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaProgressBar" type="ProgressBar" parent="BattlePanel/ActionsPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_tvmj4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_w1xkj")
+value = 40.0
+show_percentage = false
+
+[node name="StaLabel" type="Label" parent="BattlePanel/ActionsPanel/VBoxContainer/StaminaProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "STAMINA : 100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyContainer" type="VBoxContainer" parent="BattlePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -112.0
+offset_right = 64.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyLabel" type="Label" parent="BattlePanel/EnemyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EnemyIcon" type="TextureRect" parent="BattlePanel/EnemyContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="EnemyProgressBar" type="ProgressBar" parent="BattlePanel/EnemyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LootPanel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(700, 400)
 anchors_preset = 8
 anchor_left = 0.5
@@ -19,30 +193,17 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="BattlePanel"]
+[node name="GridContainer" type="GridContainer" parent="LootPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+columns = 5
 
-[node name="LootPanel" type="Panel" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+[connection signal="pressed" from="BattlePanel/ActionsPanel/HBoxContainer/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="BattlePanel/ActionsPanel/HBoxContainer/UseItem" to="." method="_on_use_item_pressed"]
+[connection signal="pressed" from="BattlePanel/ActionsPanel/HBoxContainer/Flee" to="." method="_on_flee_pressed"]

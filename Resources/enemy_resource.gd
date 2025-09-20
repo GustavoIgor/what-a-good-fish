@@ -2,6 +2,7 @@ extends Resource
 class_name EnemyResource
 
 @export var name: String = "Bat"
+@export var icon : Texture
 @export var level: int = 1
 @export var max_hp: int = 10
 @export var attack: int = 3
@@ -21,8 +22,7 @@ func is_dead() -> bool:
 	return current_hp <= 0
 
 func generate_loot() -> Array:
-	# Placeholder: depois você pode conectar loot table
 	var loot: Array = []
 	if randf() < 0.5:
-		loot.append("Potion") # Substituir por ItemResource no futuro
+		loot.append(preload("res://Resources/itens/small_potion.tres"))
 	return loot

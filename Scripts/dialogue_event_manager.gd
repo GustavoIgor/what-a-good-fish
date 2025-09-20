@@ -17,3 +17,4 @@ func _on_dialogue_ended():
 			Global.fishing = false
 		"fish_caught_failed":
 			Global.fishing = false
+			BattleManager.start_battle(preload("res://Resources/enemies/bat_enemy.tres"))
