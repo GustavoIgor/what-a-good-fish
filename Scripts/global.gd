@@ -4,6 +4,7 @@ signal game_unpaused
 signal changed
 signal money_changed
 signal stamina_changed
+signal hp_changed
 signal fish_caught(caught : bool)
 
 var change := false
@@ -11,6 +12,8 @@ var money := 0.0
 var level := 1
 var fishing := false
 var is_descending := false
+var is_in_battle := false
+var is_game_paused := false
 
 var player_stats :={
 	"stamina" : 100,
@@ -38,6 +41,7 @@ func change_money(amount : float):
 	money_changed.emit()
 
 func change_hp(amount : int):
+	hp_changed.emit()
 	player_stats["hp"] = clamp(player_stats["hp"] + amount, 0, player_stats["max_hp"])
 	if player_stats["hp"] == 0:
 		game_over()
@@ -80,6 +84,10 @@ func game_over():
 
 func pause_game():
 	game_paused.emit()
+	is_game_paused = true
 
 func unpause_game():
+	if is_descending or is_in_battle or DialogueManager.is_active:
+		return
 	game_unpaused.emit()
+	is_game_paused = false

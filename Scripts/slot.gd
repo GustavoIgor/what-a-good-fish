@@ -1,17 +1,17 @@
 extends Panel
 class_name InventorySlot
 
-# Function to slots (fish)
+signal delete
 
 @onready var icon := $Icon
 @onready var hover_panel := $HoverPanel
 @onready var name_label := $HoverPanel/VBoxContainer/NameLabel
 @onready var rarity_label := $HoverPanel/VBoxContainer/RarityLabel
 @onready var weight_label := $HoverPanel/VBoxContainer/WeightLabel
+@onready var util_panel := $UtilPanel
 
 var data: FishData = null
 var show_it := false
-
 
 func _ready() -> void:
 	refresh()
@@ -53,3 +53,14 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	hover_panel.visible = false
+	hide_util_panel()
+
+func show_util_panel():
+	util_panel.visible = true
+
+func hide_util_panel():
+	util_panel.visible = false
+
+func _on_delete_pressed() -> void:
+	delete.emit()
+	hide_util_panel()

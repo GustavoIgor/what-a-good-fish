@@ -1,9 +1,14 @@
 extends TextureRect
 
+signal delete
+signal use
+signal equip
+
 @export var slot_index := -1
 @onready var icon := $Icon
 @onready var quantity_label := $QuantityLabel
 @onready var hover_panel := $HoverPanel
+@onready var util_panel := $UtilPanel
 @onready var rich_text_label := $HoverPanel/ScrollContainer/VBoxContainer/RichTextLabel
 
 var data: Dictionary = {}  # {"item": Item, "quantity": int}
@@ -25,7 +30,11 @@ func clear() -> void:
 	refresh()
 
 func refresh() -> void:
+	$UtilPanel/VBoxContainer/Use.hide()
+	$UtilPanel/VBoxContainer/Equip.hide()
+	$UtilPanel/VBoxContainer/Delete.hide()
 	if data:
+		$UtilPanel/VBoxContainer/Delete.show()
 		modulate = Color(1,1,1,1)
 		icon.texture = data["item"].icon
 		var item: Item = data["item"]
@@ -41,17 +50,20 @@ func refresh() -> void:
 		text += item.description + "\n\n"
 
 		if item is ConsumableItem:
+			$UtilPanel/VBoxContainer/Use.show()
 			text += "[color=green]Consumable[/color]\n"
 			text += "- Heal Amount: " + str(item.heal_amount) + "\n"
 			text += "- Stamina Restore: " + str(item.stamina_restore) + "\n"
 
 		if item is WeaponItem:
+			$UtilPanel/VBoxContainer/Equip.show()
 			text += "[color=red]Weapon[/color]\n"
 			text += "- Damage: " + str(item.damage) + "\n"
 			text += "- Attack Speed: " + str(item.attack_speed) + "\n"
 			text += "- Durability: " + str(item.durability) + "\n"
 
 		if item is ArmorItem:
+			$UtilPanel/VBoxContainer/Equip.show()
 			text += "[color=blue]Armor[/color]\n"
 			text += "- Defense: " + str(item.defense) + "\n"
 			text += "- Slot: " + str(item.slot) + "\n"
@@ -62,6 +74,7 @@ func refresh() -> void:
 		modulate = Color(1,1,1,0.5)
 		quantity_label.hide()
 		icon.texture = null
+		rich_text_label.text = ""
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("show_it"):
@@ -73,9 +86,28 @@ func _input(event: InputEvent) -> void:
 	elif Input.is_action_pressed("ui_up"):
 		rich_text_label.get_v_scroll_bar().value -= 10 # Adjust scroll speed as needed
 
+func hide_util_panel():
+	util_panel.visible = false
+
+func show_util_panel():
+	util_panel.visible = true
+
 func _on_mouse_entered() -> void:
 	if data != null and show_it:
 		hover_panel.visible = true
 
 func _on_mouse_exited() -> void:
 	hover_panel.visible = false
+	hide_util_panel()
+
+func _on_delete_pressed() -> void:
+	delete.emit()
+	hide_util_panel()
+
+func _on_use_pressed() -> void:
+	use.emit()
+	hide_util_panel()
+
+func _on_equip_pressed() -> void:
+	equip.emit()
+	hide_util_panel()

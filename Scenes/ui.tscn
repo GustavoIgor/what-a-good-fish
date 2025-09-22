@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c40ltgcaeira6"]
+[gd_scene load_steps=6 format=3 uid="uid://c40ltgcaeira6"]
 
 [ext_resource type="Script" uid="uid://c57qq2yrl8703" path="res://Scripts/ui.gd" id="1_jxero"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
+bg_color = Color(0, 0.7176471, 1, 0.87058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdvrb"]
+bg_color = Color(0, 0.29411766, 1, 0.87058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nf4gj"]
+bg_color = Color(0.94509804, 0.39215687, 0.43137255, 0.87058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2246s"]
+bg_color = Color(1, 0, 0, 0.87058824)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_jxero")
@@ -25,7 +37,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="LevelBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer"]
@@ -58,7 +70,10 @@ alignment = 1
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_jxero")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qdvrb")
 step = 1.0
+value = 40.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/StaminaBoxContainer/ProgressBar"]
@@ -69,6 +84,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "STAMINA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/HBoxContainer/HPBoxContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_nf4gj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2246s")
+step = 1.0
+value = 40.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/HPBoxContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP"
 horizontal_alignment = 1
 vertical_alignment = 1
 

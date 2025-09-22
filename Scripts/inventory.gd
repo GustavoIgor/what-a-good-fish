@@ -24,9 +24,12 @@ func _ready() -> void:
 	for i in range(fish_grid_container.get_child_count()):
 		var slot : FISH_SLOT_CLASS = fish_grid_container.get_child(i)
 		slot.gui_input.connect(slot_gui_input.bind(slot, i))
+		slot.delete.connect(_on_fish_delete.bind(i))
 	for i in range(item_grid_container.get_child_count()):
 		var slot : ITEM_SLOT_CLASS = item_grid_container.get_child(i)
 		slot.gui_input.connect(item_slot_gui_input.bind(slot, i))
+		slot.delete.connect(_on_item_delete.bind(i))
+		slot.use.connect(_on_use_item.bind(i))
 
 	InventoryManager.connect("inventory_updated", _on_inventory_updated)
 	fish_inventory_panel.visible = false
@@ -40,6 +43,8 @@ func _process(_delta: float) -> void:
 # Manages the player interaction with the inventory.
 func slot_gui_input(event: InputEvent, slot: FISH_SLOT_CLASS, slot_index: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if slot.util_panel.visible:
+			return
 		#If the player is holding a fish, swaps.
 		if holding_fish_data:
 			if InventoryManager.swap_fish(holding_from_index, slot_index):
@@ -51,9 +56,13 @@ func slot_gui_input(event: InputEvent, slot: FISH_SLOT_CLASS, slot_index: int) -
 				holding_from_index = slot_index
 				drag_preview.texture = slot.icon.texture
 				drag_preview.visible = true
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		slot.show_util_panel()
 
 func item_slot_gui_input(event: InputEvent, slot: ITEM_SLOT_CLASS, slot_index: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if slot.util_panel.visible:
+			return
 		if holding_item:
 			if InventoryManager.swap_item(holding_from_index, slot_index):
 				cancel_drag()
@@ -63,7 +72,9 @@ func item_slot_gui_input(event: InputEvent, slot: ITEM_SLOT_CLASS, slot_index: i
 				holding_from_index = slot_index
 				drag_preview.texture = slot.icon.texture
 				drag_preview.visible = true
-
+				
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		slot.show_util_panel()
 
 func cancel_drag() -> void:
 	holding_fish_data = null
@@ -107,3 +118,13 @@ func _on_fish_inventory_icon_gui_input(event: InputEvent) -> void:
 		fish_inventory_panel.visible = !fish_inventory_panel.visible
 		item_inventory_panel.visible = false
 		cancel_drag()
+
+func _on_fish_delete(i : int):
+	InventoryManager.remove_fish(i)
+
+func _on_item_delete(i : int):
+	InventoryManager.remove_item_by_index(i)
+
+func _on_use_item(i : int):
+	InventoryManager.get_item_at(i)["item"].use()
+	InventoryManager.remove_item_by_index(i)

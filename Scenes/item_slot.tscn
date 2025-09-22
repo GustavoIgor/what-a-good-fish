@@ -88,5 +88,40 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="UtilPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UtilPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Delete" type="Button" parent="UtilPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "DELETE"
+
+[node name="Use" type="Button" parent="UtilPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "USE"
+
+[node name="Equip" type="Button" parent="UtilPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "EQUIP"
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="UtilPanel/VBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="UtilPanel/VBoxContainer/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="UtilPanel/VBoxContainer/Equip" to="." method="_on_equip_pressed"]

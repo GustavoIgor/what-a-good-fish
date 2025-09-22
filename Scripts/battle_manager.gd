@@ -3,8 +3,8 @@ extends CanvasLayer
 enum BattleState { START, PLAYER_TURN, ENEMY_TURN, VICTORY, DEFEAT }
 
 var state: BattleState = BattleState.START
-
 var enemy: EnemyResource
+var enemy_current_hp : int
 
 @export var item_slot : PackedScene
 @onready var actions_panel = $BattlePanel/ActionsPanel
@@ -12,12 +12,15 @@ var enemy: EnemyResource
 @onready var loot_panel = $LootPanel
 
 func start_battle(enemy_res: EnemyResource, back1 : Texture = null, back2 : Texture = null) -> void:
+	Global.pause_game()
 	$MovingBackGround.swap_backgrounds(back1, back2)
 	log_panel.text = ""
-	enemy = enemy_res
+	enemy = enemy_res.duplicate()
 	%EnemyLabel.text = enemy.name
 	%EnemyIcon.texture = enemy.icon
-	%EnemyProgressBar.max_value = enemy.max_hp
+	%EnemyProgressBar.max_value = enemy.hp
+	%HPProgressBar.max_value = Global.player_stats["max_hp"]
+	%StaminaProgressBar.max_value = Global.player_stats["max_stamina"]
 	state = BattleState.PLAYER_TURN
 	_log("A wild %s appeared!" % enemy.name)
 	_update_ui()
@@ -25,12 +28,10 @@ func start_battle(enemy_res: EnemyResource, back1 : Texture = null, back2 : Text
 
 func _update_ui() -> void:
 	%HPProgressBar.value = Global.player_stats["hp"]
-	%HPProgressBar.max_value = Global.player_stats["max_hp"]
 	%StaminaProgressBar.value = Global.player_stats["stamina"]
-	%StaminaProgressBar.max_value = Global.player_stats["max_stamina"]
 	%HPLabel.text = "HP: " + str(Global.player_stats["hp"]) + "|" + str(Global.player_stats["max_hp"])
 	%StaLabel.text = "STAMINA: " + str(Global.player_stats["stamina"]) + "|" + str(Global.player_stats["max_stamina"])
-	%EnemyProgressBar.value = enemy.current_hp
+	%EnemyProgressBar.value = enemy.hp
 
 func _log(text: String) -> void:
 	log_panel.add_text(text + "\n")
@@ -58,6 +59,8 @@ func on_player_use_item(item) -> void:
 
 func on_player_run() -> void:
 	_log("You ran away...")
+	await get_tree().create_timer(1.0).timeout
+	Global.unpause_game()
 	hide()
 
 func _enemy_turn() -> void:
@@ -72,24 +75,22 @@ func _enemy_turn() -> void:
 		_update_ui()
 
 func _end_battle(victory: bool) -> void:
+	Global.unpause_game()
 	if victory:
 		_log("You defeated %s!" % enemy.name)
 		var loot = enemy.generate_loot()
+		$LootPanel.show()
 		if loot:
-			$LootPanel.show()
 			for i in loot:
 				var item = item_slot.instantiate()
 				$LootPanel/GridContainer.add_child(item)
 				item.set_data_singular(i)
-		#_log("Loot: %s" + loot)
-		# Aqui você mostra tela de loot
-		
-		#hide()
+				InventoryManager.add_item(i)
+				_log("Loot: " + i.name)
 	else:
 		_log("You were defeated...")
 		hide()
-		# Aqui você aplica a lógica de perder 3 itens e voltar para checkpoint
-	actions_panel.hide()
+		# TODO lost items in defeat
 
 func _on_attack_pressed() -> void:
 	on_player_attack()
@@ -99,3 +100,8 @@ func _on_use_item_pressed() -> void:
 
 func _on_flee_pressed() -> void:
 	on_player_run()
+
+func _on_ok_pressed() -> void:
+	$LootPanel.hide()
+	enemy = null
+	hide()

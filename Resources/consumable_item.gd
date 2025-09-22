@@ -6,3 +6,4 @@ class_name ConsumableItem
 
 func use() -> void:
 	Global.change_stamina(stamina_restore)
+	Global.change_hp(heal_amount)

@@ -91,8 +91,8 @@ func _on_choice_pressed(choice_text):
 
 func end_dialogue():
 	#Ui.show()
-	Global.unpause_game()
 	is_active = false
+	Global.unpause_game()
 	hide()
 	dialogue_ended.emit()
 
