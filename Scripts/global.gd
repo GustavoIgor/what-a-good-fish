@@ -14,6 +14,7 @@ var fishing := false
 var is_descending := false
 var is_in_battle := false
 var is_game_paused := false
+var actual_scene : String
 
 var player_stats :={
 	"stamina" : 100,
@@ -41,8 +42,8 @@ func change_money(amount : float):
 	money_changed.emit()
 
 func change_hp(amount : int):
-	hp_changed.emit()
 	player_stats["hp"] = clamp(player_stats["hp"] + amount, 0, player_stats["max_hp"])
+	hp_changed.emit()
 	if player_stats["hp"] == 0:
 		game_over()
 

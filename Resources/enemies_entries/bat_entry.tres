@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyEntry" load_steps=3 format=3 uid="uid://dcblxlw65gwo7"]
+
+[ext_resource type="Resource" uid="uid://1l1jgcemjkol" path="res://Resources/enemies/bat_enemy.tres" id="1_8ujqh"]
+[ext_resource type="Script" uid="uid://bvm8gdewjyrfv" path="res://Resources/enemy_entry.gd" id="1_xyifa"]
+
+[resource]
+script = ExtResource("1_xyifa")
+enemy_resource = ExtResource("1_8ujqh")
+metadata/_custom_type_script = "uid://bvm8gdewjyrfv"

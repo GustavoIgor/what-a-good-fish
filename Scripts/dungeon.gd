@@ -12,6 +12,7 @@ extends Node2D
 @onready var tilemap := $TileWrapper/Ground  # Assuming your TileMap is a child node
 
 func _ready():
+	Global.actual_scene = "dungeon"
 	Global.is_descending = false
 	generate_room()
 	place_objects()

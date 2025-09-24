@@ -42,6 +42,8 @@ func _process(_delta: float) -> void:
 
 # Manages the player interaction with the inventory.
 func slot_gui_input(event: InputEvent, slot: FISH_SLOT_CLASS, slot_index: int) -> void:
+	if Global.is_game_paused:
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if slot.util_panel.visible:
 			return
@@ -60,6 +62,8 @@ func slot_gui_input(event: InputEvent, slot: FISH_SLOT_CLASS, slot_index: int) -
 		slot.show_util_panel()
 
 func item_slot_gui_input(event: InputEvent, slot: ITEM_SLOT_CLASS, slot_index: int) -> void:
+	if Global.is_game_paused:
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if slot.util_panel.visible:
 			return

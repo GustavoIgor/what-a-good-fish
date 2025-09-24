@@ -20,6 +20,16 @@ func play_sfx(sound: AudioStream, volume: int = 0):
 		sfx.stream = sound
 		sfx.play()
 
+func check_music():
+	match Global.actual_scene:
+		"dungeon":
+			play_music(load("res://Assets/music/WHAT A GOOD FISH.wav"), false, -10)
+		"shop":
+			if Global.level > 50:
+				play_music(preload("res://Assets/music/Shopver_1.mp3"), false, -10)
+			else:
+				play_music(preload("res://Assets/music/Shopver_2.mp3"), false, -10)
+
 func play_music(music_stream: AudioStream, force_restart := false, volume : int = 0):
 	if current_music == music_stream and !force_restart:
 		return  # já está tocando

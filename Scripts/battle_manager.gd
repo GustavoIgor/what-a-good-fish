@@ -11,8 +11,12 @@ var enemy_current_hp : int
 @onready var log_panel = $BattlePanel/LogPanel/ScrollContainer/RichTextLabel
 @onready var loot_panel = $LootPanel
 
+func _ready() -> void:
+	RandomEncounter.battle_triggered.connect(_on_battle_triggered)
+
 func start_battle(enemy_res: EnemyResource, back1 : Texture = null, back2 : Texture = null) -> void:
 	Global.pause_game()
+	SoundManager.play_music(preload("res://Assets/music/Fierce_battle_is_today.wav"), false, -10)
 	$MovingBackGround.swap_backgrounds(back1, back2)
 	log_panel.text = ""
 	enemy = enemy_res.duplicate()
@@ -25,6 +29,9 @@ func start_battle(enemy_res: EnemyResource, back1 : Texture = null, back2 : Text
 	_log("A wild %s appeared!" % enemy.name)
 	_update_ui()
 	show()
+
+func _on_battle_triggered(enemy_tri : EnemyResource):
+	start_battle(enemy_tri)
 
 func _update_ui() -> void:
 	%HPProgressBar.value = Global.player_stats["hp"]
@@ -62,6 +69,7 @@ func on_player_run() -> void:
 	await get_tree().create_timer(1.0).timeout
 	Global.unpause_game()
 	hide()
+	SoundManager.check_music()
 
 func _enemy_turn() -> void:
 	var dmg = enemy.attack
@@ -79,6 +87,7 @@ func _end_battle(victory: bool) -> void:
 	if victory:
 		_log("You defeated %s!" % enemy.name)
 		var loot = enemy.generate_loot()
+		$BattlePanel.hide()
 		$LootPanel.show()
 		if loot:
 			for i in loot:
@@ -102,6 +111,10 @@ func _on_flee_pressed() -> void:
 	on_player_run()
 
 func _on_ok_pressed() -> void:
+	for i in $LootPanel/GridContainer.get_children():
+		$LootPanel/GridContainer.remove_child(i)
 	$LootPanel.hide()
+	$BattlePanel.show()
 	enemy = null
 	hide()
+	SoundManager.check_music()

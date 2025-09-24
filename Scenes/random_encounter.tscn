@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4mwi8upjw5ut"]
+
+[ext_resource type="Script" uid="uid://nxfyg4qlvha4" path="res://Scripts/random_encounter.gd" id="1_m3i2j"]
+[ext_resource type="Resource" uid="uid://ch4ynlhf63drm" path="res://Resources/enemy_table_official.tres" id="2_ogb5e"]
+
+[node name="RandomEncounter" type="Node"]
+script = ExtResource("1_m3i2j")
+enemy_table = ExtResource("2_ogb5e")

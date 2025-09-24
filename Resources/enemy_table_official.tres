@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyTable" load_steps=4 format=3 uid="uid://ch4ynlhf63drm"]
+
+[ext_resource type="Script" uid="uid://bvm8gdewjyrfv" path="res://Resources/enemy_entry.gd" id="1_5qqj1"]
+[ext_resource type="Script" uid="uid://d2dlmms7rh8pw" path="res://Resources/enemy_table.gd" id="2_0y0a1"]
+[ext_resource type="Resource" uid="uid://dcblxlw65gwo7" path="res://Resources/enemies_entries/bat_entry.tres" id="2_cv1al"]
+
+[resource]
+script = ExtResource("2_0y0a1")
+enemies = Array[ExtResource("1_5qqj1")]([ExtResource("2_cv1al")])
+metadata/_custom_type_script = "uid://d2dlmms7rh8pw"
