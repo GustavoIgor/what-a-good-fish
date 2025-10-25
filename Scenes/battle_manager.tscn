@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8d8sjc11lf5e"]
+[gd_scene load_steps=9 format=3 uid="uid://b8d8sjc11lf5e"]
 
 [ext_resource type="Script" uid="uid://c0udg8f77sh3n" path="res://Scripts/battle_manager.gd" id="1_h1ip2"]
 [ext_resource type="PackedScene" uid="uid://c0gn662kyrh4u" path="res://Scenes/moving_back_ground.tscn" id="2_58ulb"]
 [ext_resource type="PackedScene" uid="uid://ew425eutsfhw" path="res://Scenes/item_slot.tscn" id="2_pjdjj"]
+[ext_resource type="PackedScene" uid="uid://cc5hvmuswmyyv" path="res://Scenes/use_item_panel.tscn" id="4_tvmj4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58ulb"]
 bg_color = Color(1, 0.4745098, 0.5137255, 0.87058824)
@@ -230,6 +231,9 @@ offset_bottom = -108.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "OK"
+
+[node name="UseItemPanel" parent="." instance=ExtResource("4_tvmj4")]
+visible = false
 
 [connection signal="pressed" from="BattlePanel/ActionsPanel/HBoxContainer/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="BattlePanel/ActionsPanel/HBoxContainer/UseItem" to="." method="_on_use_item_pressed"]

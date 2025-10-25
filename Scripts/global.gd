@@ -60,6 +60,8 @@ func descent(amount : int):
 		win()
 		return
 	
+	BattleManager.hide()
+	
 	player_stats["stamina"] = player_stats["max_stamina"]
 	if level % 10 == 0:
 		Fade.fade_transition("res://Scenes/dungeon.tscn")

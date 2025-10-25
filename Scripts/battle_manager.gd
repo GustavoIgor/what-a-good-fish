@@ -10,9 +10,12 @@ var enemy_current_hp : int
 @onready var actions_panel = $BattlePanel/ActionsPanel
 @onready var log_panel = $BattlePanel/LogPanel/ScrollContainer/RichTextLabel
 @onready var loot_panel = $LootPanel
+@onready var use_item_panel = $UseItemPanel
 
 func _ready() -> void:
 	RandomEncounter.battle_triggered.connect(_on_battle_triggered)
+	use_item_panel.item_use_canceled.connect(_on_use_item_canceled)
+	use_item_panel.item_used.connect(on_player_use_item)
 
 func start_battle(enemy_res: EnemyResource, back1 : Texture = null, back2 : Texture = null) -> void:
 	Global.pause_game()
@@ -57,9 +60,10 @@ func on_player_attack() -> void:
 		await get_tree().create_timer(1.0).timeout
 		_enemy_turn()
 
-func on_player_use_item(item) -> void:
-	# Placeholder: depois conecta inventário
-	_log("You used %s!" % item.name)
+func on_player_use_item(item_name) -> void:
+	use_item_panel.hide()
+	_update_ui()
+	_log("You used %s!" % item_name)
 	state = BattleState.ENEMY_TURN
 	await get_tree().create_timer(1.0).timeout
 	_enemy_turn()
@@ -105,7 +109,11 @@ func _on_attack_pressed() -> void:
 	on_player_attack()
 
 func _on_use_item_pressed() -> void:
-	pass
+	$UseItemPanel.show()
+
+func _on_use_item_canceled():
+	$UseItemPanel.hide()
+
 
 func _on_flee_pressed() -> void:
 	on_player_run()

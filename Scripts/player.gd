@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 func animate():
 	if velocity != Vector2(0, 0):
 		animation.play("walk")
-		if Global.actual_scene == "shop":
+		if Global.actual_scene == "shop" or Global.actual_scene == "intro":
 			return
 		RandomEncounter.register_time()
 	else:
