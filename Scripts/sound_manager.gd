@@ -30,9 +30,12 @@ func check_music():
 			else:
 				play_music(preload("res://Assets/music/Shopver_2.mp3"), false, -10)
 
-func play_music(music_stream: AudioStream, force_restart := false, volume : int = 0):
+func play_music(music_stream, force_restart := false, volume : int = 0):
+	if music_stream is String:
+		music_stream = load(music_stream)
+	
 	if current_music == music_stream and !force_restart:
-		return  # já está tocando
+		return
 	
 	current_music = music_stream
 	music.stop()

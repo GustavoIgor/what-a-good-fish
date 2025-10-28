@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=10 format=3 uid="uid://bxqrvpi1rx2vo"]
+
+[ext_resource type="Script" uid="uid://7vnyhbqph84b" path="res://Resources/dialogue_entry.gd" id="1_suwa6"]
+[ext_resource type="Script" uid="uid://4affosv6ndea" path="res://Resources/dialogue_resource.gd" id="2_kdcrw"]
+
+[sub_resource type="Resource" id="Resource_suwa6"]
+script = ExtResource("1_suwa6")
+name = "Tobias"
+text = "Hello there! I'm a vendor, if you want to be more 'humane' I'm Tobias"
+metadata/_custom_type_script = "uid://7vnyhbqph84b"
+
+[sub_resource type="Resource" id="Resource_kdcrw"]
+script = ExtResource("1_suwa6")
+name = "Winston"
+text = "So... you are a merchant, why is that if I may?"
+metadata/_custom_type_script = "uid://7vnyhbqph84b"
+
+[sub_resource type="Resource" id="Resource_m1qa5"]
+script = ExtResource("1_suwa6")
+name = "Tobias"
+text = "Why not? new faces, new stories; new itens, new money!"
+metadata/_custom_type_script = "uid://7vnyhbqph84b"
+
+[sub_resource type="Resource" id="Resource_66gxg"]
+script = ExtResource("1_suwa6")
+name = "Winston"
+text = "Fair enough."
+metadata/_custom_type_script = "uid://7vnyhbqph84b"
+
+[sub_resource type="Resource" id="Resource_5jggf"]
+script = ExtResource("1_suwa6")
+name = "Tobias"
+text = "anyways. Are you a adventurer with that leg?"
+metadata/_custom_type_script = "uid://7vnyhbqph84b"
+
+[sub_resource type="Resource" id="Resource_skwo6"]
+script = ExtResource("1_suwa6")
+name = "Winston"
+text = "It's the only I have. Still."
+metadata/_custom_type_script = "uid://7vnyhbqph84b"
+
+[sub_resource type="Resource" id="Resource_qsx6s"]
+script = ExtResource("1_suwa6")
+name = "Tobias"
+text = "You are brave... anyways, let's trade!"
+metadata/_custom_type_script = "uid://7vnyhbqph84b"
+
+[resource]
+script = ExtResource("2_kdcrw")
+once = true
+entries = Array[ExtResource("1_suwa6")]([SubResource("Resource_suwa6"), SubResource("Resource_kdcrw"), SubResource("Resource_m1qa5"), SubResource("Resource_66gxg"), SubResource("Resource_5jggf"), SubResource("Resource_skwo6"), SubResource("Resource_qsx6s")])
+metadata/_custom_type_script = "uid://4affosv6ndea"

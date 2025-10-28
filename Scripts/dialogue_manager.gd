@@ -5,7 +5,6 @@ signal dialogue_ended
 signal choice_made(choice_text)
 
 var dialogue_data := []
-var once_dialogues := []
 var current_index := 0
 var is_active := false
 var is_typing := false
@@ -20,14 +19,9 @@ var typing_speed := 0.03
 @onready var choices_box = $Choices
 
 func start_dialogue(data: String):
-	if is_active:
-		return
 	dialogue_data = DialogueCommunicator.get_dialogue(data)
-	if dialogue_data.size() > 0 and dialogue_data[0].has("once") and dialogue_data[0]["once"] == "true":
-		if data in once_dialogues:
-			return
-		else:
-			once_dialogues.append(data)
+	if is_active or data == "":
+		return
 	Global.pause_game()
 	dialogue_started.emit()
 	
@@ -44,35 +38,35 @@ func show_next():
 	if current_index >= dialogue_data.size():
 		end_dialogue()
 		return
-
+	
 	var entry = dialogue_data[current_index]
 	
-	if entry.get("name", ""):
-		name_label.text = entry.get("name", "")
+	if entry.name:
+		name_label.text = entry.name
 	else:
 		name_label.text = ""
-	if entry.get("icon", ""):
-		icon.texture = load("res://Assets/Arts/" + entry.get("icon", ""))
+	if entry.icon:
+		icon.texture = entry.icon
 	else:
 		icon.texture = null
-	if entry.get("background", ""):
-		background.texture = load(entry.get("background", ""))
+	if entry.background:
+		background.texture = entry.background
 	else:
 		background.texture = null
-	if entry.get("background2", ""):
-		background2.texture = load(entry.get("background2", ""))
+	if entry.background2:
+		background2.texture = entry.background2
 	else:
 		background2.texture = null
-	if entry.get("music", ""):
-		SoundManager.play_music(entry.get("music", ""))
-	if entry.get("sfx", ""):
-		SoundManager.play_sfx(load(entry.get("sfx", "")), -20)
+	if entry.music:
+		SoundManager.play_music(entry.music)
+	if entry.sfx:
+		SoundManager.play_sfx(entry.sfx)
 	
-	var text = entry.get("text", "")
+	var text = entry.text
 	await type_text(text)
 
-	if entry.has("choices"):
-		show_choices(entry["choices"])
+	if entry.choices:
+		show_choices(entry.choices)
 	else:
 		current_index += 1
 
