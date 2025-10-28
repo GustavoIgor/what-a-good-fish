@@ -51,5 +51,6 @@ func _on_cancel_item_pressed() -> void:
 	item_use_canceled.emit()
 
 func _on_use_item_pressed() -> void:
-	item_used.emit(InventoryManager.get_item_at(item_index)["item"].name)
+	var item_name = InventoryManager.get_item_at(item_index)["item"].name
 	use_item(item_index)
+	item_used.emit(item_name)
