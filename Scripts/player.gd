@@ -30,9 +30,7 @@ func animate():
 		animation.stop()
 
 func _on_animation_finished():
-	print("fer")
 	if animation.name == "walk":
-		print("Feito")
 		RandomEncounter.register_step()
 
 func _on_game_paused():

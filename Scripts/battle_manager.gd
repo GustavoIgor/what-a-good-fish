@@ -102,8 +102,19 @@ func _end_battle(victory: bool) -> void:
 				_log("Loot: " + i.name)
 	else:
 		_log("You were defeated...")
+		# Lose some random items as penalty
+		_lose_random_items(3)
+		# Return player to the last shop level (levels that end with 5: 5,15,25...)
+		var current_level = Global.level
+		var shop_level = int(floor(float(current_level - 5) / 10.0) * 10 + 5)
+		if shop_level < 5:
+			shop_level = 5
+		Global.level = shop_level
+		# Hide battle UI and go to shop scene
+		$BattlePanel.hide()
 		hide()
-		# TODO lost items in defeat
+		Global.player_stats["hp"] = Global.player_stats["max_hp"]
+		Fade.fade_transition("res://Scenes/shop_zone.tscn")
 
 func _on_attack_pressed() -> void:
 	on_player_attack()
@@ -126,3 +137,30 @@ func _on_ok_pressed() -> void:
 	enemy = null
 	hide()
 	SoundManager.check_music()
+
+
+func _lose_random_items(count: int) -> void:
+	# Collect indices of non-empty item slots
+	var filled_indices: Array = []
+	for i in range(InventoryManager.item_inventory.size()):
+		if InventoryManager.item_inventory[i] != {}:
+			filled_indices.append(i)
+	if filled_indices.is_empty():
+		return
+
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+
+	var removed := 0
+	while removed < count and filled_indices.size() > 0:
+		var pick_idx = rng.randi_range(0, filled_indices.size() - 1)
+		var slot = filled_indices[pick_idx]
+		# Remove one quantity from that slot (if stackable it will decrement)
+		var entry = InventoryManager.get_item_at(slot)
+		if entry != {}:
+			var item_name = entry["item"].name
+			InventoryManager.remove_item_by_index(slot, 1)
+			_log("Lost item: %s" % item_name)
+			removed += 1
+		# remove the index from candidates so we don't pick it again
+		filled_indices.erase(pick_idx)
