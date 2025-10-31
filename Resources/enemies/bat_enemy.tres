@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_82yn3")
+name = "BAT"
 icon = ExtResource("1_utlx8")
 level = 5
 hp = 20

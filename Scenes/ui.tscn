@@ -124,6 +124,6 @@ offset_right = -10.0
 offset_bottom = -11.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "RETRY GENERATION"
+text = "CLIMB UP"
 
 [connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]

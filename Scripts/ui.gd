@@ -17,6 +17,9 @@ func _ready() -> void:
 	Global.hp_changed.connect(_on_hp_changed)
 	InventoryManager.inventory_updated.connect(_on_inventory_updated)
 	
+	if Global.level <= 0:
+		$Retry.hide()
+	
 	level_label.text = "LEVEL: " + str(Global.level)
 	_on_money_changed()
 	_on_stamina_changed()
@@ -37,7 +40,7 @@ func _on_inventory_updated():
 	fish_label.text = "FISH: " + str(InventoryManager.get_fish_quantity())
 
 func _on_retry_pressed() -> void:
-	Global.descent(0)
+	Global.descent(-1)
 
 func _on_game_paused():
 	hide()

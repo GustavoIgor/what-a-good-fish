@@ -5,6 +5,7 @@ enum BattleState { START, PLAYER_TURN, ENEMY_TURN, VICTORY, DEFEAT }
 var state: BattleState = BattleState.START
 var enemy: EnemyResource
 var enemy_current_hp : int
+var just_lose := false
 
 @export var item_slot : PackedScene
 @onready var actions_panel = $BattlePanel/ActionsPanel
@@ -101,19 +102,20 @@ func _end_battle(victory: bool) -> void:
 				InventoryManager.add_item(i)
 				_log("Loot: " + i.name)
 	else:
+		just_lose = true
 		_log("You were defeated...")
 		# Lose some random items as penalty
 		_lose_random_items(3)
 		# Return player to the last shop level (levels that end with 5: 5,15,25...)
 		var current_level = Global.level
 		var shop_level = int(floor(float(current_level - 5) / 10.0) * 10 + 5)
-		if shop_level < 5:
-			shop_level = 5
-		Global.level = shop_level
-		# Hide battle UI and go to shop scene
-		$BattlePanel.hide()
 		hide()
 		Global.player_stats["hp"] = Global.player_stats["max_hp"]
+		if shop_level < 5:
+			Global.level = 0
+			Fade.fade_transition("") #Put initial scene here
+		Global.level = shop_level
+		# Hide battle UI and go to shop scene
 		Fade.fade_transition("res://Scenes/shop_zone.tscn")
 
 func _on_attack_pressed() -> void:

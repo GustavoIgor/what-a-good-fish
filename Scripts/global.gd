@@ -52,15 +52,21 @@ func change_stamina(amount : int):
 	stamina_changed.emit()
 
 func descent(amount : int):
+	BattleManager.hide()
+	level += amount
+	
+	if level <= 0:
+		level = 0
+		Fade.fade_transition("") # Put Cave entrance here
+		return
+	
 	if amount == 0:
 		Fade.fade_transition("res://Scenes/dungeon.tscn")
 		return
-	level += amount
+	
 	if money >= 10000:
 		win()
 		return
-	
-	BattleManager.hide()
 	
 	player_stats["stamina"] = player_stats["max_stamina"]
 	if level % 10 == 0:
