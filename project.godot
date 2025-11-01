@@ -97,6 +97,7 @@ show_it={
 2d_physics/layer_4="objects"
 2d_physics/layer_5="characters"
 2d_physics/layer_6="enemies"
+2d_physics/layer_7="teleport"
 
 [rendering]
 

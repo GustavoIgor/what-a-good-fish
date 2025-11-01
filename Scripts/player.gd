@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@onready var animation := $AnimationPlayer
-@onready var sprite := $Sprite2D
+@export var animation : AnimationPlayer
+@export var camera : Camera2D
 var speed := 100
 var game_paused := false
 
@@ -35,6 +35,7 @@ func _on_animation_finished():
 
 func _on_game_paused():
 	game_paused = true
+	animation.stop()
 
 func _on_game_unpaused():
 	game_paused = false
